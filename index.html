@@ -3,380 +3,569 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desarrollo Web Profesional | Tu Nombre o Marca</title>
-    
-    <!-- Tailwind CSS for styling -->
+    <title>ghty studio | Páginas Web y Publicidad Digital</title>
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            900: '#1e3a8a',
-                        },
-                        whatsapp: '#25D366',
-                        whatsappHover: '#128C7E'
-                    }
-                }
+    <style>
+        /* BASE THEME (LIGHT MODE POR DEFECTO) */
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-subtle: #f1f5f9;
+            --bg-nav: rgba(255, 255, 255, 0.85);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            --card-hover-shadow: 0 25px 35px -5px rgba(14, 165, 233, 0.15);
+            --brand-gradient: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+            --brand-ads-gradient: linear-gradient(135deg, #7e22ce 0%, #ec4899 100%);
+            --badge-bg: #e0f2fe;
+            --badge-text: #0284c7;
+            --input-bg: #ffffff;
+            --accent-glow: rgba(14, 165, 233, 0.08);
+        }
+
+        /* AUTO DARK MODE AT-RULE (SE ADAPTA AUTOMÁTICAMENTE AL SISTEMA OPERATIVO) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-main: #0b0f19;
+                --bg-card: #111827;
+                --bg-card-subtle: #1f2937;
+                --bg-nav: rgba(11, 15, 25, 0.85);
+                --text-main: #f8fafc;
+                --text-muted: #9ca3af;
+                --border-color: rgba(255, 255, 255, 0.1);
+                --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+                --card-hover-shadow: 0 25px 35px -5px rgba(56, 189, 248, 0.2);
+                --brand-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+                --brand-ads-gradient: linear-gradient(135deg, #c084fc 0%, #f472b6 100%);
+                --badge-bg: rgba(56, 189, 248, 0.12);
+                --badge-text: #38bdf8;
+                --input-bg: #0f172a;
+                --accent-glow: rgba(99, 102, 241, 0.15);
             }
         }
-    </script>
-    <style>
-        /* Custom styles for elements Tailwind can't handle perfectly out of the box */
+
         body {
             font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+
+        .bg-theme-main { background-color: var(--bg-main); }
+        .bg-theme-card { background-color: var(--bg-card); }
+        .bg-theme-subtle { background-color: var(--bg-card-subtle); }
+        .bg-theme-nav { background-color: var(--bg-nav); }
+        .text-theme-main { color: var(--text-main); }
+        .text-theme-muted { color: var(--text-muted); }
+        .border-theme { border-color: var(--border-color); }
+        .shadow-theme { box-shadow: var(--card-shadow); }
+
+        .text-gradient-brand {
+            background: var(--brand-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .card-hover {
-            transition: all 0.3s ease;
+
+        .text-gradient-ads {
+            background: var(--brand-ads-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+        .btn-brand {
+            background: var(--brand-gradient);
+            color: #ffffff;
+        }
+
+        .btn-ads {
+            background: var(--brand-ads-gradient);
+            color: #ffffff;
+        }
+
+        .card-interactive {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-interactive:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="antialiased min-h-screen flex flex-col justify-between relative overflow-x-hidden">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+    <nav class="fixed top-0 left-0 w-full z-50 bg-theme-nav backdrop-blur-md border-b border-theme transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <i class="fa-solid fa-code text-brand-600 text-2xl mr-2"></i>
-                    <span class="font-bold text-xl tracking-tight text-gray-900">GHTY STUDIO </span>
+            <div class="flex justify-between h-20 items-center">
+                
+                <!-- Logo corporativo -->
+                <div class="flex items-center cursor-pointer" onclick="switchView('web')">
+                    <div class="w-10 h-10 rounded-xl btn-brand flex items-center justify-center mr-3 shadow-md">
+                        <i class="fa-solid fa-code text-white text-lg"></i>
+                    </div>
+                    <span class="font-extrabold text-2xl tracking-tight text-theme-main">ghty<span class="font-light text-sky-500">studio</span></span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#inicio" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Inicio</a>
-                    <a href="#servicios" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Servicios</a>
-                    <a href="#precios" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Precios</a>
-                    <a href="#contacto" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Contacto</a>
+
+                <!-- Menú Escritorio -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="switchView('web')" id="nav-web" class="font-semibold text-sky-500 transition-colors relative py-1">
+                        Páginas Web
+                        <span id="indicator-web" class="absolute bottom-0 left-0 w-full h-0.5 bg-sky-500 rounded-full transition-all"></span>
+                    </button>
+                    <button onclick="switchView('ads')" id="nav-ads" class="font-medium text-theme-muted hover:text-theme-main transition-colors relative py-1">
+                        Publicidad Digital
+                        <span id="indicator-ads" class="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 rounded-full transition-all"></span>
+                    </button>
+                    <a href="#contacto" class="px-6 py-2.5 rounded-full border border-theme text-theme-main font-semibold hover:bg-theme-subtle transition-all">
+                        Contactar
+                    </a>
                 </div>
+
+                <!-- Botón Menú Hamburguesa (Móvil) -->
                 <div class="md:hidden flex items-center">
-                    <button class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                    <button id="mobile-menu-btn" class="p-2 text-theme-main focus:outline-none" aria-label="Abrir Menú">
                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-theme-card border-b border-theme shadow-xl">
+            <div class="px-4 pt-3 pb-6 space-y-2">
+                <button onclick="switchView('web')" id="mob-nav-web" class="w-full text-left px-4 py-3 rounded-xl font-semibold text-sky-500 bg-sky-500/10 flex items-center">
+                    <i class="fa-solid fa-laptop-code w-7 text-lg"></i> Páginas Web
+                </button>
+                <button onclick="switchView('ads')" id="mob-nav-ads" class="w-full text-left px-4 py-3 rounded-xl font-medium text-theme-muted hover:bg-theme-subtle flex items-center">
+                    <i class="fa-solid fa-bullseye w-7 text-lg"></i> Publicidad Digital
+                </button>
+                <a href="#contacto" onclick="closeMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl font-medium text-theme-muted hover:bg-theme-subtle flex items-center">
+                    <i class="fa-solid fa-paper-plane w-7 text-lg"></i> Contacto Directo
+                </a>
+            </div>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="pt-28 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="text-center max-w-3xl mx-auto">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight">
-                    Transforma tu visión en una <br class="hidden sm:block" />
-                    <span class="gradient-text">Realidad Digital</span>
+    <!-- Dynamic Glow Backdrop -->
+    <div class="glow-effect top-10 left-5"></div>
+    <div class="glow-effect top-1/2 right-5"></div>
+
+    <main class="flex-grow pt-24 pb-16 relative z-10">
+        
+        <!-- ========================================== -->
+        <!-- SECCIÓN 1: PÁGINAS WEB                     -->
+        <!-- ========================================== -->
+        <div id="view-web" class="fade-in max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Hero Web -->
+            <section class="py-12 md:py-16 text-center max-w-3xl mx-auto">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-6" style="background-color: var(--badge-bg); color: var(--badge-text);">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Desarrollo Web a Medida
+                </span>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-theme-main mb-6 leading-tight">
+                    Páginas Web Profesionales que <span class="text-gradient-brand">Impulsan tus Ventas</span>
                 </h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-600 mb-10">
-                    Diseño y desarrollo de páginas web modernas, rápidas y adaptadas a tus necesidades. Desde landing pages sencillas hasta proyectos complejos, todo a precios accesibles.
+                <p class="text-lg md:text-xl text-theme-muted leading-relaxed mb-8">
+                    Diseños modernos, ultrarrápidos y optimizados para celulares. Creamos la presencia digital que tu marca merece de $25 a $100 USD.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#contacto" class="inline-flex justify-center items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-brand-600 hover:bg-brand-700 transition-colors duration-300">
-                        Comenzar mi proyecto
-                        <i class="fa-solid fa-arrow-right ml-2"></i>
-                    </a>
-                    <a href="#precios" class="inline-flex justify-center items-center px-8 py-3 border-2 border-gray-200 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors duration-300">
-                        Ver Planes y Precios
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+                <a href="#contacto" class="inline-flex items-center px-8 py-4 rounded-full btn-brand font-bold text-lg shadow-lg hover:opacity-95 transition-all">
+                    Solicitar mi Web
+                    <i class="fa-solid fa-arrow-right ml-3"></i>
+                </a>
+            </section>
 
-    <!-- Features Section -->
-    <section id="servicios" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-base text-brand-600 font-semibold tracking-wide uppercase">Por qué elegirme</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Características de mis servicios
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center card-hover">
-                    <div class="w-14 h-14 mx-auto bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Diseño Responsivo</h3>
-                    <p class="text-gray-600">Tu página se verá perfecta en teléfonos móviles, tablets y computadoras de escritorio.</p>
-                </div>
-                <!-- Feature 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center card-hover">
-                    <div class="w-14 h-14 mx-auto bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-bolt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Carga Rápida</h3>
-                    <p class="text-gray-600">Código limpio y optimizado para que tu sitio web cargue a la velocidad de la luz.</p>
-                </div>
-                <!-- Feature 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center card-hover">
-                    <div class="w-14 h-14 mx-auto bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-palette text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Diseño Moderno</h3>
-                    <p class="text-gray-600">Estéticas actuales y profesionales que captarán la atención de tus clientes al instante.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="precios" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Planes y Precios Transparentes</h2>
-                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">Selecciona el nivel de detalle que necesita tu proyecto. Sin costos ocultos.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Planes Páginas Web -->
+            <section class="py-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
                 
-                <!-- Plan Básico -->
-                <div class="border border-gray-200 rounded-3xl p-8 shadow-sm bg-white flex flex-col relative card-hover">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Básico</h3>
-                    <p class="text-gray-500 mb-6">Ideal para presencia personal o portafolios sencillos.</p>
-                    <div class="mb-6">
-                        <span class="text-5xl font-extrabold text-gray-900">$25</span>
+                <!-- Plan $25 -->
+                <div class="bg-theme-card border border-theme rounded-3xl p-8 flex flex-col justify-between card-interactive">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-2xl font-bold text-theme-main">Básica</h3>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-theme-subtle text-theme-muted">Ideal Inicio</span>
+                        </div>
+                        <p class="text-theme-muted text-sm mb-6">Para emprendedores que necesitan presencia digital rápida y efectiva.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-theme-main">$25</span>
+                            <span class="text-theme-muted font-medium">/ USD</span>
+                        </div>
+                        <ul class="space-y-3 mb-8 text-sm text-theme-muted">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-3"></i> Landing Page de 1 Sección</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-3"></i> Diseño 100% Adaptable a Móviles</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-3"></i> Botón Directo a WhatsApp</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-3"></i> Enlaces a Redes Sociales</li>
+                        </ul>
                     </div>
-                    <ul class="space-y-4 mb-8 flex-1">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Landing Page (1 página)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Diseño Responsivo</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Formulario de Contacto simple</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Enlaces a Redes Sociales</span>
-                        </li>
-                    </ul>
-                    <a href="#contacto" onclick="selectPlan('basico')" class="w-full block text-center bg-gray-50 text-brand-600 font-semibold py-3 rounded-xl border border-gray-200 hover:bg-gray-100 transition-colors">Elegir Básico</a>
+                    <button onclick="selectPlanAndScroll('Web Básica ($25)')" class="w-full py-3.5 rounded-xl border border-theme text-theme-main font-semibold hover:bg-theme-subtle transition-colors">
+                        Elegir Plan $25
+                    </button>
                 </div>
 
-                <!-- Plan Profesional -->
-                <div class="border-2 border-brand-500 rounded-3xl p-8 shadow-xl bg-white flex flex-col relative transform md:-translate-y-4">
-                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-brand-500 text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
+                <!-- Plan $50 (Destacado) -->
+                <div class="bg-theme-card border-2 border-sky-500 rounded-3xl p-8 flex flex-col justify-between card-interactive relative shadow-xl transform md:-translate-y-3">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md">
+                        Más Popular
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-4 mt-2">
+                            <h3 class="text-2xl font-bold text-theme-main">Profesional</h3>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-sky-500/10 text-sky-500">Recomendado</span>
+                        </div>
+                        <p class="text-theme-muted text-sm mb-6">La opción perfecta para negocios en crecimiento y profesionales.</p>
+                        <div class="mb-6">
+                            <span class="text-5xl font-extrabold text-theme-main">$50</span>
+                            <span class="text-theme-muted font-medium">/ USD</span>
+                        </div>
+                        <ul class="space-y-3 mb-8 text-sm text-theme-main">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-sky-500 mr-3"></i> Sitio Multi-sección (Hasta 4 Págs)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-sky-500 mr-3"></i> Catálogo de Productos/Servicios</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-sky-500 mr-3"></i> Formulario Avanzado de Pedidos</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-sky-500 mr-3"></i> Optimización de Velocidad SEO</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectPlanAndScroll('Web Profesional ($50)')" class="w-full py-3.5 rounded-xl btn-brand font-bold shadow-lg hover:opacity-95 transition-all">
+                        Elegir Profesional $50
+                    </button>
+                </div>
+
+                <!-- Plan $100 -->
+                <div class="bg-theme-card border border-theme rounded-3xl p-8 flex flex-col justify-between card-interactive">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-2xl font-bold text-theme-main">Premium</h3>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-theme-subtle text-theme-muted">Completo</span>
+                        </div>
+                        <p class="text-theme-muted text-sm mb-6">Para proyectos avanzados con requerimientos especiales y diseños detallados.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-theme-main">$100</span>
+                            <span class="text-theme-muted font-medium">/ USD</span>
+                        </div>
+                        <ul class="space-y-3 mb-8 text-sm text-theme-muted">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-3"></i> Aplicación Web Personalizada / SPA</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-3"></i> Animaciones Interactivas Premium</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-3"></i> Estilo Gráfico Personalizado Completo</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-sky-500 mr-3"></i> Asistencia y Soporte Prioritario</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectPlanAndScroll('Web Premium ($100)')" class="w-full py-3.5 rounded-xl border border-theme text-theme-main font-semibold hover:bg-theme-subtle transition-colors">
+                        Elegir Plan $100
+                    </button>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECCIÓN 2: PUBLICIDAD DIGITAL              -->
+        <!-- ========================================== -->
+        <div id="view-ads" class="hidden fade-in max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Hero Publicidad -->
+            <section class="py-12 md:py-16 text-center max-w-3xl mx-auto">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-6" style="background-color: rgba(168, 85, 247, 0.15); color: #c084fc;">
+                    <i class="fa-solid fa-bullseye mr-2"></i> Campañas de Alto Impacto
+                </span>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-theme-main mb-6 leading-tight">
+                    Publicidad Digital que <span class="text-gradient-ads">Consigue Clientes</span>
+                </h1>
+                <p class="text-lg md:text-xl text-theme-muted leading-relaxed mb-8">
+                    Llega exactamente a las personas interesadas en comprar tus productos o servicios con planes accesibles desde $5 a $50 USD.
+                </p>
+                <a href="#contacto" class="inline-flex items-center px-8 py-4 rounded-full btn-ads font-bold text-lg shadow-lg hover:opacity-95 transition-all">
+                    Iniciar Campaña
+                    <i class="fa-solid fa-rocket ml-3"></i>
+                </a>
+            </section>
+
+            <!-- Planes Publicidad -->
+            <section class="py-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- Plan $5 -->
+                <div class="bg-theme-card border border-theme rounded-3xl p-8 flex flex-col justify-between card-interactive">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-2xl font-bold text-theme-main">Impulso</h3>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-theme-subtle text-theme-muted">Básico</span>
+                        </div>
+                        <p class="text-theme-muted text-sm mb-6">Ideal para promocionar una oferta rápida o dar a conocer una publicación.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-theme-main">$5</span>
+                            <span class="text-theme-muted font-medium">/ USD</span>
+                        </div>
+                        <ul class="space-y-3 mb-8 text-sm text-theme-muted">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-purple-500 mr-3"></i> Segmentación Básica por Zona</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-purple-500 mr-3"></i> Promoción en Redes Sociales</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-purple-500 mr-3"></i> Reporte Breve de Alcance</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectPlanAndScroll('Publicidad Básico ($5)')" class="w-full py-3.5 rounded-xl border border-theme text-theme-main font-semibold hover:bg-theme-subtle transition-colors">
+                        Elegir Plan $5
+                    </button>
+                </div>
+
+                <!-- Plan $15 (Recomendado) -->
+                <div class="bg-theme-card border-2 border-purple-500 rounded-3xl p-8 flex flex-col justify-between card-interactive relative shadow-xl transform md:-translate-y-3">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md">
                         Recomendado
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Profesional</h3>
-                    <p class="text-gray-500 mb-6">Perfecto para negocios y pequeñas empresas en crecimiento.</p>
-                    <div class="mb-6">
-                        <span class="text-5xl font-extrabold text-gray-900">$50</span>
+                    <div>
+                        <div class="flex justify-between items-center mb-4 mt-2">
+                            <h3 class="text-2xl font-bold text-theme-main">Crecimiento</h3>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-purple-500/10 text-purple-500">Mejor Valor</span>
+                        </div>
+                        <p class="text-theme-muted text-sm mb-6">Diseñado para conseguir un flujo constante de nuevos clientes en tu negocio.</p>
+                        <div class="mb-6">
+                            <span class="text-5xl font-extrabold text-theme-main">$15</span>
+                            <span class="text-theme-muted font-medium">/ USD</span>
+                        </div>
+                        <ul class="space-y-3 mb-8 text-sm text-theme-main">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-purple-500 mr-3"></i> Segmentación Avanzada por Intereses</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-purple-500 mr-3"></i> Diseño de Arte / Imagen Publicitaria</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-purple-500 mr-3"></i> Optimización de Presupuesto</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-purple-500 mr-3"></i> Redirección Directa a tu WhatsApp</li>
+                        </ul>
                     </div>
-                    <ul class="space-y-4 mb-8 flex-1">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Sitio Multi-página (Hasta 4 págs)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Diseño Personalizado</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Galería de Imágenes</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Integración de Google Maps</span>
-                        </li>
-                    </ul>
-                    <a href="#contacto" onclick="selectPlan('profesional')" class="w-full block text-center bg-brand-600 text-white font-semibold py-3 rounded-xl hover:bg-brand-700 transition-colors shadow-md">Elegir Profesional</a>
+                    <button onclick="selectPlanAndScroll('Publicidad Recomendado ($15)')" class="w-full py-3.5 rounded-xl btn-ads font-bold shadow-lg hover:opacity-95 transition-all">
+                        Elegir Recomendado $15
+                    </button>
                 </div>
 
-                <!-- Plan Premium -->
-                <div class="border border-gray-200 rounded-3xl p-8 shadow-sm bg-white flex flex-col relative card-hover">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
-                    <p class="text-gray-500 mb-6">Proyectos complejos, alta interactividad o tiendas básicas.</p>
-                    <div class="mb-6">
-                        <span class="text-5xl font-extrabold text-gray-900">$100</span>
+                <!-- Plan $50 -->
+                <div class="bg-theme-card border border-theme rounded-3xl p-8 flex flex-col justify-between card-interactive">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-2xl font-bold text-theme-main">Avanzado</h3>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-theme-subtle text-theme-muted">Masivo</span>
+                        </div>
+                        <p class="text-theme-muted text-sm mb-6">Campaña de alto alcance para lanzamientos y posicionamiento acelerado.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-theme-main">$50</span>
+                            <span class="text-theme-muted font-medium">/ USD</span>
+                        </div>
+                        <ul class="space-y-3 mb-8 text-sm text-theme-muted">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-purple-500 mr-3"></i> Múltiples Anuncios y Pruebas A/B</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-purple-500 mr-3"></i> Cobertura Nacional / Amplia</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-purple-500 mr-3"></i> Estrategia Completa de Conversión</li>
+                        </ul>
                     </div>
-                    <ul class="space-y-4 mb-8 flex-1">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Páginas ilimitadas (razonable)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Catálogo de Productos / Servicios</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Animaciones Avanzadas</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Soporte Prioritario post-entrega</span>
-                        </li>
-                    </ul>
-                    <a href="#contacto" onclick="selectPlan('premium')" class="w-full block text-center bg-gray-50 text-brand-600 font-semibold py-3 rounded-xl border border-gray-200 hover:bg-gray-100 transition-colors">Elegir Premium</a>
+                    <button onclick="selectPlanAndScroll('Publicidad Avanzada ($50)')" class="w-full py-3.5 rounded-xl border border-theme text-theme-main font-semibold hover:bg-theme-subtle transition-colors">
+                        Elegir Plan $50
+                    </button>
                 </div>
 
-            </div>
+            </section>
         </div>
-    </section>
 
-    <!-- Contact / Order Form Section -->
-    <section id="contacto" class="py-20 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+        <section id="contacto" class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-theme-card border border-theme rounded-3xl shadow-theme overflow-hidden transition-colors">
                 <div class="grid grid-cols-1 md:grid-cols-5">
                     
-                    <!-- Form Info Side -->
-                    <div class="md:col-span-2 bg-brand-900 p-10 text-white flex flex-col justify-between">
+                    <!-- Lado informativo -->
+                    <div class="md:col-span-2 btn-brand p-8 text-white flex flex-col justify-between">
                         <div>
-                            <h3 class="text-2xl font-bold mb-4">Inicia tu Proyecto</h3>
-                            <p class="text-brand-100 mb-8">Cuéntame sobre tu idea. Completa el formulario y te responderé directamente vía WhatsApp para afinar los detalles.</p>
-                            
-                            <div class="space-y-6">
-                                <div class="flex items-center">
-                                    <i class="fa-brands fa-whatsapp text-2xl mr-4 text-whatsapp"></i>
-                                    <span>+58 424-1458724</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fa-solid fa-envelope text-xl mr-4 text-brand-300"></i>
-                                    <span>Respuesta rápida</span>
-                                </div>
-                            </div>
+                            <span class="text-xs uppercase tracking-widest font-bold opacity-80">Contacto Directo</span>
+                            <h3 class="text-3xl font-extrabold mt-2 mb-4">Haz tu Pedido Ahora</h3>
+                            <p class="text-white/80 text-sm leading-relaxed mb-6">
+                                Rellena los datos y tu solicitud se abrirá automáticamente en tu WhatsApp para atenderte de forma personalizada.
+                            </p>
                         </div>
-                        <div class="mt-12 hidden md:block">
-                            <i class="fa-solid fa-laptop-code text-6xl text-brand-700 opacity-50"></i>
+                        <div class="space-y-4">
+                            <div class="flex items-center text-sm font-medium">
+                                <i class="fa-brands fa-whatsapp text-2xl mr-3"></i>
+                                <span>+58 424-1458724</span>
+                            </div>
+                            <div class="flex items-center text-sm font-medium">
+                                <i class="fa-solid fa-clock text-xl mr-3"></i>
+                                <span>Atención Inmediata</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- The Form -->
-                    <div class="md:col-span-3 p-10">
-                        <form id="orderForm" class="space-y-6">
+                    <!-- Formulario -->
+                    <div class="md:col-span-3 p-8 bg-theme-card">
+                        <form id="orderForm" class="space-y-4">
                             <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">Tu Nombre Completo</label>
-                                <input type="text" id="name" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-colors" placeholder="Ej. Juan Pérez">
+                                <label for="name" class="block text-xs font-bold uppercase tracking-wider text-theme-muted mb-1">Nombre Completo</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border border-theme bg-theme-subtle text-theme-main focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all" placeholder="Ej. Carlos Mendoza">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="email" class="block text-xs font-bold uppercase tracking-wider text-theme-muted mb-1">Correo Electrónico</label>
+                                    <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl border border-theme bg-theme-subtle text-theme-main focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all" placeholder="cliente@correo.com">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-theme-muted mb-1">Teléfono</label>
+                                    <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-xl border border-theme bg-theme-subtle text-theme-main focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all" placeholder="0412-0000000">
+                                </div>
                             </div>
 
                             <div>
-                                <label for="plan" class="block text-sm font-medium text-gray-700">Plan de Interés</label>
-                                <select id="plan" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-colors">
+                                <label for="plan" class="block text-xs font-bold uppercase tracking-wider text-theme-muted mb-1">Servicio de Interés</label>
+                                <select id="plan" required class="w-full px-4 py-3 rounded-xl border border-theme bg-theme-subtle text-theme-main focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all">
                                     <option value="" disabled selected>Selecciona un plan...</option>
-                                    <option value="Básico ($25)">Básico - $25 USD</option>
-                                    <option value="Profesional ($50)">Profesional - $50 USD</option>
-                                    <option value="Premium ($100)">Premium - $100 USD</option>
-                                    <option value="Aún no estoy seguro">No estoy seguro, necesito asesoría</option>
+                                    <optgroup label="Páginas Web">
+                                        <option value="Web Básica ($25)">Web Básica - $25 USD</option>
+                                        <option value="Web Profesional ($50)">Web Profesional - $50 USD</option>
+                                        <option value="Web Premium ($100)">Web Premium - $100 USD</option>
+                                    </optgroup>
+                                    <optgroup label="Publicidad Digital">
+                                        <option value="Publicidad Básico ($5)">Publicidad Básico - $5 USD</option>
+                                        <option value="Publicidad Recomendado ($15)">Publicidad Recomendado - $15 USD</option>
+                                        <option value="Publicidad Avanzada ($50)">Publicidad Avanzada - $50 USD</option>
+                                    </optgroup>
                                 </select>
                             </div>
 
                             <div>
-                                <label for="details" class="block text-sm font-medium text-gray-700">Detalles de tu página web</label>
-                                <p class="text-xs text-gray-500 mb-2">¿De qué trata tu negocio? ¿Qué secciones necesitas (Ej: Inicio, Nosotros, Galería)? ¿Tienes algún ejemplo de página que te guste?</p>
-                                <textarea id="details" rows="4" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-colors resize-none" placeholder="Describe tu proyecto aquí..."></textarea>
+                                <label for="details" class="block text-xs font-bold uppercase tracking-wider text-theme-muted mb-1">Detalles del Proyecto</label>
+                                <textarea id="details" rows="3" required class="w-full px-4 py-3 rounded-xl border border-theme bg-theme-subtle text-theme-main focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all resize-none" placeholder="Escribe aquí brevemente de qué trata tu negocio o idea..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full flex justify-center items-center py-4 px-4 border border-transparent rounded-xl shadow-md text-base font-bold text-white bg-[#25D366] hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#25D366] transition-colors duration-300">
-                                <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
-                                Enviar pedido por WhatsApp
+                            <button type="submit" class="w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-base shadow-lg transition-all flex items-center justify-center">
+                                <i class="fa-brands fa-whatsapp text-2xl mr-2"></i>
+                                Enviar Pedido a WhatsApp
                             </button>
-                            <p class="text-xs text-center text-gray-400 mt-2">Serás redirigido a WhatsApp para enviar el mensaje.</p>
                         </form>
                     </div>
+
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center mb-4 md:mb-0 cursor-pointer" onclick="window.scrollTo(0,0)">
-                <i class="fa-solid fa-code text-white text-2xl mr-2"></i>
-                <span class="font-bold text-xl tracking-tight text-white">GHTYSTUDIO</span>
-            </div>
-            <p class="text-gray-400 text-sm text-center md:text-left">
-                &copy; 2026 GHTYSTUDIO . Todos los derechos reservados.
+    </main>
+
+    <footer class="bg-theme-card border-t border-theme py-8 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-theme-muted text-sm font-medium">
+                &copy; 2026 ghty studio. Empresa creada por Brayan Reveth.
             </p>
-            <div class="flex space-x-6 mt-4 md:mt-0">
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <span class="sr-only">Instagram</span>
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <span class="sr-only">Twitter</span>
-                    <i class="fa-brands fa-twitter text-xl"></i>
-                </a>
-            </div>
         </div>
     </footer>
 
-    <!-- JavaScript Functionality -->
     <script>
-        // Function to pre-select plan from pricing cards
-        function selectPlan(planValue) {
-            const selectElement = document.getElementById('plan');
-            if (planValue === 'basico') selectElement.value = 'Básico ($25)';
-            if (planValue === 'profesional') selectElement.value = 'Profesional ($50)';
-            if (planValue === 'premium') selectElement.value = 'Premium ($100)';
+        // Cambiar entre Vistas (SPA)
+        function switchView(viewName) {
+            const webView = document.getElementById('view-web');
+            const adsView = document.getElementById('view-ads');
+            
+            const navWeb = document.getElementById('nav-web');
+            const navAds = document.getElementById('nav-ads');
+            
+            const indWeb = document.getElementById('indicator-web');
+            const indAds = document.getElementById('indicator-ads');
+
+            const mobWeb = document.getElementById('mob-nav-web');
+            const mobAds = document.getElementById('mob-nav-ads');
+
+            if (viewName === 'web') {
+                webView.classList.remove('hidden');
+                adsView.classList.add('hidden');
+                
+                navWeb.className = "font-semibold text-sky-500 transition-colors relative py-1";
+                navAds.className = "font-medium text-theme-muted hover:text-theme-main transition-colors relative py-1";
+                
+                indWeb.style.width = "100%";
+                indAds.style.width = "0%";
+
+                mobWeb.className = "w-full text-left px-4 py-3 rounded-xl font-semibold text-sky-500 bg-sky-500/10 flex items-center";
+                mobAds.className = "w-full text-left px-4 py-3 rounded-xl font-medium text-theme-muted hover:bg-theme-subtle flex items-center";
+
+            } else if (viewName === 'ads') {
+                adsView.classList.remove('hidden');
+                webView.classList.add('hidden');
+
+                navAds.className = "font-semibold text-purple-500 transition-colors relative py-1";
+                navWeb.className = "font-medium text-theme-muted hover:text-theme-main transition-colors relative py-1";
+
+                indAds.style.width = "100%";
+                indWeb.style.width = "0%";
+
+                mobAds.className = "w-full text-left px-4 py-3 rounded-xl font-semibold text-purple-500 bg-purple-500/10 flex items-center";
+                mobWeb.className = "w-full text-left px-4 py-3 rounded-xl font-medium text-theme-muted hover:bg-theme-subtle flex items-center";
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            closeMobileMenu();
         }
 
-        // Form submission logic targeting WhatsApp
+        // Selección automática de plan y scroll
+        function selectPlanAndScroll(planValue) {
+            const select = document.getElementById('plan');
+            select.value = planValue;
+            document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Menú Hamburguesa
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Enviar Formulario a WhatsApp (04241458724 / 584241458724)
         document.getElementById('orderForm').addEventListener('submit', function(e) {
-            // Prevenir que el formulario se envíe de la manera tradicional (recargando la página)
             e.preventDefault();
 
-            // Obtener los valores de los inputs
             const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             const plan = document.getElementById('plan').value;
             const details = document.getElementById('details').value.trim();
 
-            // Número de WhatsApp proporcionado (formato internacional sin el +)
-            // 04241458724 en Venezuela es +58 424-1458724
-            const phoneNumber = "584241458724";
+            const targetWhatsAppNumber = "584241458724";
 
-            // Construir el mensaje prellenado
-            let message = `¡Hola! Mi nombre es *${name}*.\n\n`;
-            message += `Estoy interesado en el desarrollo de una página web y me gustaría contratar el *Plan ${plan}*.\n\n`;
-            message += `*Detalles de mi proyecto:*\n${details}\n\n`;
-            message += `¿Podemos hablar sobre los siguientes pasos?`;
+            let message = `*¡Hola ghty studio!* 👋\n\n`;
+            message += `Deseo realizar una solicitud de servicio:\n\n`;
+            message += `👤 *Nombre:* ${name}\n`;
+            message += `📧 *Correo:* ${email}\n`;
+            message += `📞 *Teléfono:* ${phone}\n`;
+            message += `🎯 *Plan Elegido:* ${plan}\n\n`;
+            message += `📝 *Detalles del Proyecto:*\n${details}\n\n`;
+            message += `Quedo a la espera de su respuesta. ¡Muchas gracias!`;
 
-            // Codificar el mensaje para que sea válido en una URL (maneja espacios, saltos de línea, etc.)
-            const encodedMessage = encodeURIComponent(message);
+            const encodedMsg = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${targetWhatsAppNumber}?text=${encodedMsg}`;
 
-            // Construir el enlace universal de WhatsApp
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-            // Abrir el enlace en una nueva pestaña/ventana
-            window.open(whatsappURL, '_blank');
-            
-            // Opcional: limpiar el formulario después de enviarlo
-            // this.reset();
+            window.open(whatsappUrl, '_blank');
         });
     </script>
 </body>
