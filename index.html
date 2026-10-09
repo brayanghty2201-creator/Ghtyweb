@@ -1,0 +1,385 @@
+```html
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo Web Profesional | Tu Nombre o Marca</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        },
+                        whatsapp: '#25D366',
+                        whatsappHover: '#128C7E'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for elements Tailwind can't handle perfectly out of the box */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-code text-brand-600 text-2xl mr-2"></i>
+                    <span class="font-bold text-xl tracking-tight text-gray-900">WebStudio</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Inicio</a>
+                    <a href="#servicios" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Servicios</a>
+                    <a href="#precios" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Precios</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Contacto</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-600 hover:text-gray-900 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-28 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight">
+                    Transforma tu visión en una <br class="hidden sm:block" />
+                    <span class="gradient-text">Realidad Digital</span>
+                </h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 mb-10">
+                    Diseño y desarrollo de páginas web modernas, rápidas y adaptadas a tus necesidades. Desde landing pages sencillas hasta proyectos complejos, todo a precios accesibles.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contacto" class="inline-flex justify-center items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-brand-600 hover:bg-brand-700 transition-colors duration-300">
+                        Comenzar mi proyecto
+                        <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#precios" class="inline-flex justify-center items-center px-8 py-3 border-2 border-gray-200 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors duration-300">
+                        Ver Planes y Precios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="servicios" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-base text-brand-600 font-semibold tracking-wide uppercase">Por qué elegirme</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Características de mis servicios
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center card-hover">
+                    <div class="w-14 h-14 mx-auto bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Diseño Responsivo</h3>
+                    <p class="text-gray-600">Tu página se verá perfecta en teléfonos móviles, tablets y computadoras de escritorio.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center card-hover">
+                    <div class="w-14 h-14 mx-auto bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-bolt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Carga Rápida</h3>
+                    <p class="text-gray-600">Código limpio y optimizado para que tu sitio web cargue a la velocidad de la luz.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center card-hover">
+                    <div class="w-14 h-14 mx-auto bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-palette text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Diseño Moderno</h3>
+                    <p class="text-gray-600">Estéticas actuales y profesionales que captarán la atención de tus clientes al instante.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="precios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Planes y Precios Transparentes</h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">Selecciona el nivel de detalle que necesita tu proyecto. Sin costos ocultos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Plan Básico -->
+                <div class="border border-gray-200 rounded-3xl p-8 shadow-sm bg-white flex flex-col relative card-hover">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Básico</h3>
+                    <p class="text-gray-500 mb-6">Ideal para presencia personal o portafolios sencillos.</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-extrabold text-gray-900">$25</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Landing Page (1 página)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Diseño Responsivo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Formulario de Contacto simple</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Enlaces a Redes Sociales</span>
+                        </li>
+                    </ul>
+                    <a href="#contacto" onclick="selectPlan('basico')" class="w-full block text-center bg-gray-50 text-brand-600 font-semibold py-3 rounded-xl border border-gray-200 hover:bg-gray-100 transition-colors">Elegir Básico</a>
+                </div>
+
+                <!-- Plan Profesional -->
+                <div class="border-2 border-brand-500 rounded-3xl p-8 shadow-xl bg-white flex flex-col relative transform md:-translate-y-4">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-brand-500 text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
+                        Recomendado
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Profesional</h3>
+                    <p class="text-gray-500 mb-6">Perfecto para negocios y pequeñas empresas en crecimiento.</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-extrabold text-gray-900">$50</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Sitio Multi-página (Hasta 4 págs)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Diseño Personalizado</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Galería de Imágenes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Integración de Google Maps</span>
+                        </li>
+                    </ul>
+                    <a href="#contacto" onclick="selectPlan('profesional')" class="w-full block text-center bg-brand-600 text-white font-semibold py-3 rounded-xl hover:bg-brand-700 transition-colors shadow-md">Elegir Profesional</a>
+                </div>
+
+                <!-- Plan Premium -->
+                <div class="border border-gray-200 rounded-3xl p-8 shadow-sm bg-white flex flex-col relative card-hover">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
+                    <p class="text-gray-500 mb-6">Proyectos complejos, alta interactividad o tiendas básicas.</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-extrabold text-gray-900">$100</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Páginas ilimitadas (razonable)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Catálogo de Productos / Servicios</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Animaciones Avanzadas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-brand-500 mt-1 mr-3"></i>
+                            <span class="text-gray-600">Soporte Prioritario post-entrega</span>
+                        </li>
+                    </ul>
+                    <a href="#contacto" onclick="selectPlan('premium')" class="w-full block text-center bg-gray-50 text-brand-600 font-semibold py-3 rounded-xl border border-gray-200 hover:bg-gray-100 transition-colors">Elegir Premium</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Order Form Section -->
+    <section id="contacto" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-5">
+                    
+                    <!-- Form Info Side -->
+                    <div class="md:col-span-2 bg-brand-900 p-10 text-white flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">Inicia tu Proyecto</h3>
+                            <p class="text-brand-100 mb-8">Cuéntame sobre tu idea. Completa el formulario y te responderé directamente vía WhatsApp para afinar los detalles.</p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-center">
+                                    <i class="fa-brands fa-whatsapp text-2xl mr-4 text-whatsapp"></i>
+                                    <span>+58 424-1458724</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fa-solid fa-envelope text-xl mr-4 text-brand-300"></i>
+                                    <span>Respuesta rápida</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-12 hidden md:block">
+                            <i class="fa-solid fa-laptop-code text-6xl text-brand-700 opacity-50"></i>
+                        </div>
+                    </div>
+
+                    <!-- The Form -->
+                    <div class="md:col-span-3 p-10">
+                        <form id="orderForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Tu Nombre Completo</label>
+                                <input type="text" id="name" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-colors" placeholder="Ej. Juan Pérez">
+                            </div>
+
+                            <div>
+                                <label for="plan" class="block text-sm font-medium text-gray-700">Plan de Interés</label>
+                                <select id="plan" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-colors">
+                                    <option value="" disabled selected>Selecciona un plan...</option>
+                                    <option value="Básico ($25)">Básico - $25 USD</option>
+                                    <option value="Profesional ($50)">Profesional - $50 USD</option>
+                                    <option value="Premium ($100)">Premium - $100 USD</option>
+                                    <option value="Aún no estoy seguro">No estoy seguro, necesito asesoría</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="details" class="block text-sm font-medium text-gray-700">Detalles de tu página web</label>
+                                <p class="text-xs text-gray-500 mb-2">¿De qué trata tu negocio? ¿Qué secciones necesitas (Ej: Inicio, Nosotros, Galería)? ¿Tienes algún ejemplo de página que te guste?</p>
+                                <textarea id="details" rows="4" required class="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-colors resize-none" placeholder="Describe tu proyecto aquí..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full flex justify-center items-center py-4 px-4 border border-transparent rounded-xl shadow-md text-base font-bold text-white bg-[#25D366] hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#25D366] transition-colors duration-300">
+                                <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
+                                Enviar pedido por WhatsApp
+                            </button>
+                            <p class="text-xs text-center text-gray-400 mt-2">Serás redirigido a WhatsApp para enviar el mensaje.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <i class="fa-solid fa-code text-white text-2xl mr-2"></i>
+                <span class="font-bold text-xl tracking-tight text-white">WebStudio</span>
+            </div>
+            <p class="text-gray-400 text-sm text-center md:text-left">
+                &copy; 2026 WebStudio. Todos los derechos reservados.
+            </p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <span class="sr-only">Instagram</span>
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <span class="sr-only">Twitter</span>
+                    <i class="fa-brands fa-twitter text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Functionality -->
+    <script>
+        // Function to pre-select plan from pricing cards
+        function selectPlan(planValue) {
+            const selectElement = document.getElementById('plan');
+            if (planValue === 'basico') selectElement.value = 'Básico ($25)';
+            if (planValue === 'profesional') selectElement.value = 'Profesional ($50)';
+            if (planValue === 'premium') selectElement.value = 'Premium ($100)';
+        }
+
+        // Form submission logic targeting WhatsApp
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            // Prevenir que el formulario se envíe de la manera tradicional (recargando la página)
+            e.preventDefault();
+
+            // Obtener los valores de los inputs
+            const name = document.getElementById('name').value.trim();
+            const plan = document.getElementById('plan').value;
+            const details = document.getElementById('details').value.trim();
+
+            // Número de WhatsApp proporcionado (formato internacional sin el +)
+            // 04241458724 en Venezuela es +58 424-1458724
+            const phoneNumber = "584241458724";
+
+            // Construir el mensaje prellenado
+            let message = `¡Hola! Mi nombre es *${name}*.\n\n`;
+            message += `Estoy interesado en el desarrollo de una página web y me gustaría contratar el *Plan ${plan}*.\n\n`;
+            message += `*Detalles de mi proyecto:*\n${details}\n\n`;
+            message += `¿Podemos hablar sobre los siguientes pasos?`;
+
+            // Codificar el mensaje para que sea válido en una URL (maneja espacios, saltos de línea, etc.)
+            const encodedMessage = encodeURIComponent(message);
+
+            // Construir el enlace universal de WhatsApp
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            // Abrir el enlace en una nueva pestaña/ventana
+            window.open(whatsappURL, '_blank');
+            
+            // Opcional: limpiar el formulario después de enviarlo
+            // this.reset();
+        });
+    </script>
+</body>
+</html>
+```
