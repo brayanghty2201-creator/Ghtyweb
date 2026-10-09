@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ghty studio | Desarrollo Web & Publicidad Digital</title>
+    <title>GHTY STUDIO | Desarrollo Web & Publicidad Digital</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,19 +11,19 @@
     <!-- FontAwesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Google Fonts: Inter (Simple & Clean Typography) -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* TEMA CLARO: Limpio, minimalista y fresco */
+            /* TEMA CLARO */
             --bg-body: #fafafa;
             --bg-card: #ffffff;
             --bg-card-hover: #ffffff;
             --bg-subtle: #f4f4f5;
-            --bg-nav: rgba(250, 250, 250, 0.85);
+            --bg-nav: rgba(250, 250, 250, 0.88);
             --text-main: #09090b;
             --text-muted: #71717a;
             --border-color: #e4e4e7;
@@ -33,16 +33,17 @@
             --accent-soft: rgba(37, 99, 235, 0.08);
             --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
             --input-bg: #ffffff;
+            --logo-fill: #09090b;
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                /* TEMA OSCURO: Mate, sobrio y de alto contraste */
+                /* TEMA OSCURO */
                 --bg-body: #09090b;
                 --bg-card: #18181b;
                 --bg-card-hover: #27272a;
                 --bg-subtle: #27272a;
-                --bg-nav: rgba(9, 9, 11, 0.85);
+                --bg-nav: rgba(9, 9, 11, 0.88);
                 --text-main: #fafafa;
                 --text-muted: #a1a1aa;
                 --border-color: #27272a;
@@ -52,6 +53,7 @@
                 --accent-soft: rgba(59, 130, 246, 0.15);
                 --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
                 --input-bg: #18181b;
+                --logo-fill: #ffffff;
             }
         }
 
@@ -97,7 +99,6 @@
             background-color: var(--bg-card-hover);
         }
 
-        /* ANIMACIÓN DE CAMBIO DE TAB */
         .tab-fade {
             animation: fadeIn 0.3s ease forwards;
         }
@@ -107,7 +108,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* MENÚ HAMBURGUESA */
+        /* HAMBURGER ANIMATION */
         .hamburger-bar {
             background-color: var(--text-main);
             transition: all 0.3s ease;
@@ -119,23 +120,25 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between antialiased">
 
-    <!-- NAVEGACIÓN PRINCIPAL -->
+    <!-- ENCABEZADO Y BRANDING -->
     <header class="sticky top-0 z-50 bg-[var(--bg-nav)] backdrop-blur-md border-b border-[var(--border-color)]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 
-                <!-- Logo corporativo -->
-                <div class="flex items-center cursor-pointer" onclick="switchTab('web')">
-                    <div class="w-8 h-8 rounded-lg bg-[var(--accent)] text-white flex items-center justify-center font-bold text-sm mr-2.5">
-                        g
-                    </div>
+                <!-- Logo Isotipo SVG Geométrico Tech GHTY -->
+                <div class="flex items-center cursor-pointer select-none" onclick="switchTab('web')">
+                    <svg class="w-8 h-8 mr-2.5 transition-transform hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 25C15 19.4772 19.4772 15 25 15H50V27H27V73H50V85H25C19.4772 85 15 80.5228 15 75V25Z" fill="var(--accent)"/>
+                        <path d="M45 44H80C82.7614 44 85 46.2386 85 49V75C85 80.5228 80.5228 85 75 85H55V73H73V56H45V44Z" fill="var(--logo-fill)"/>
+                        <rect x="52" y="15" width="33" height="12" rx="3" fill="var(--accent)"/>
+                    </svg>
                     <div>
-                        <span class="font-bold text-lg tracking-tight text-[var(--text-main)]">ghty studio</span>
-                        <span class="block text-[10px] text-[var(--text-muted)] font-medium -mt-1">By Brayan Reveth</span>
+                        <span class="font-bold text-lg tracking-tight text-[var(--text-main)] block leading-tight">GHTY STUDIO</span>
+                        <span class="block text-[10px] text-[var(--text-muted)] font-semibold tracking-wider -mt-0.5 uppercase">by Brayan Reveth</span>
                     </div>
                 </div>
 
-                <!-- Menú de Escritorio -->
+                <!-- Menú Escritorio -->
                 <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
                     <button onclick="switchTab('web')" id="tab-btn-web" class="text-[var(--accent)] font-semibold transition-colors py-1">
                         Páginas Web
@@ -151,9 +154,9 @@
                     </button>
                 </nav>
 
-                <!-- Botón CTA WhatsApp Escritorio -->
+                <!-- Botón CTA WhatsApp -->
                 <div class="hidden md:flex items-center">
-                    <a href="#contacto" class="btn-primary px-4 py-2 rounded-lg text-xs font-semibold flex items-center">
+                    <a href="#contacto" class="btn-primary px-4 py-2 rounded-lg text-xs font-semibold flex items-center shadow-sm">
                         <i class="fa-brands fa-whatsapp text-sm mr-2"></i> Pedir por WhatsApp
                     </a>
                 </div>
@@ -169,13 +172,13 @@
             </div>
         </div>
 
-        <!-- Menú Desplegable Móvil -->
+        <!-- Menú Móvil Desplegable -->
         <div id="mobile-menu" class="hidden md:hidden border-b border-[var(--border-color)] bg-[var(--bg-card)] px-4 pt-2 pb-4 space-y-1 text-sm font-medium">
             <button onclick="switchTab('web')" id="mob-btn-web" class="w-full text-left px-3 py-2.5 rounded-lg text-[var(--accent)] font-semibold bg-[var(--accent-soft)]">
-                Páginas Web ($25 - $100)
+                Páginas Web ($24.99 - $99.99)
             </button>
             <button onclick="switchTab('ads')" id="mob-btn-ads" class="w-full text-left px-3 py-2.5 rounded-lg text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]">
-                Publicidad Digital ($5 - $50)
+                Publicidad Digital ($4.99 - $49.99)
             </button>
             <button onclick="switchTab('calc')" id="mob-btn-calc" class="w-full text-left px-3 py-2.5 rounded-lg text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]">
                 Calculadora de Presupuesto
@@ -191,29 +194,29 @@
 
     <main class="flex-grow py-12">
 
-        <!-- HERO SENCILLO Y MODERNO -->
+        <!-- HERO PRINCIPAL -->
         <section class="max-w-3xl mx-auto px-4 text-center mb-12">
-            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent-soft)] text-[var(--accent)] mb-4">
-                Desarrollo Digital Profesional
+            <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-soft)] text-[var(--accent)] mb-4">
+                Estudio de Desarrollo Web & Estrategia Digital
             </span>
-            <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-4">
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
                 Páginas web y publicidad efectivas para tu negocio
             </h1>
             <p class="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-xl mx-auto mb-6">
-                Diseños limpios, modernos y adaptables. Sin complicaciones, listos para recibir pedidos directo a tu WhatsApp.
+                Diseños limpios, modernos y adaptables a móviles. Sin complicaciones y con envío directo de pedidos a WhatsApp.
             </p>
             <div class="flex justify-center items-center gap-3">
                 <button onclick="switchTab('calc')" class="btn-primary px-5 py-2.5 rounded-lg text-xs font-semibold">
                     Calcular Presupuesto
                 </button>
                 <a href="#contacto" class="btn-secondary px-5 py-2.5 rounded-lg text-xs font-semibold">
-                    Enviar Mensaje
+                    Enviar Mensaje Directo
                 </a>
             </div>
         </section>
 
         <!-- ========================================== -->
-        <!-- SECCIÓN 1: PÁGINAS WEB ($25 - $100)        -->
+        <!-- SECCIÓN 1: PÁGINAS WEB ($24.99 - $99.99)   -->
         <!-- ========================================== -->
         <div id="view-web" class="tab-fade max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8">
@@ -223,7 +226,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
                 
-                <!-- Plan Básico $25 -->
+                <!-- Plan Básico $24.99 -->
                 <div class="clean-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
@@ -231,24 +234,24 @@
                             <span class="text-xs px-2 py-0.5 rounded bg-[var(--bg-subtle)] text-[var(--text-muted)] font-medium">Básico</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Web Inicial</h3>
-                        <p class="text-xs text-[var(--text-muted)] mb-4">Para emprendedores que necesitan presencia digital rápida y clara.</p>
+                        <p class="text-xs text-[var(--text-muted)] mb-4">Ideal para profesionales y negocios que necesitan presencia limpia en internet.</p>
                         <div class="mb-6">
-                            <span class="text-4xl font-extrabold">$25</span>
+                            <span class="text-4xl font-extrabold">$24.99</span>
                             <span class="text-xs text-[var(--text-muted)]">/ USD</span>
                         </div>
                         <ul class="space-y-2.5 text-xs text-[var(--text-muted)] mb-6">
                             <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Página Única (Landing Page)</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Diseño Adaptable a Celulares</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Botón Directo a WhatsApp</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Integración con Redes Sociales</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Diseño 100% Adaptable a Celulares</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Botón de Contacto a WhatsApp</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Enlaces a Redes Sociales</li>
                         </ul>
                     </div>
-                    <button onclick="selectPlan('Web Básico ($25 USD)')" class="w-full py-2.5 rounded-lg btn-secondary text-xs font-semibold">
-                        Elegir Plan $25
+                    <button onclick="selectPlan('Web Básico ($24.99 USD)')" class="w-full py-2.5 rounded-lg btn-secondary text-xs font-semibold">
+                        Elegir Plan $24.99
                     </button>
                 </div>
 
-                <!-- Plan Profesional $50 (Destacado) -->
+                <!-- Plan Profesional $49.99 (Recomendado) -->
                 <div class="clean-card rounded-2xl p-6 flex flex-col justify-between border-2 border-[var(--accent)] relative">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--accent)] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
                         Recomendado
@@ -259,24 +262,24 @@
                             <span class="text-xs px-2 py-0.5 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-medium">Completo</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Web Avanzado</h3>
-                        <p class="text-xs text-[var(--text-muted)] mb-4">Para negocios que buscan estructurar sus productos o servicios.</p>
+                        <p class="text-xs text-[var(--text-muted)] mb-4">Especial para negocios que requieren mostrar catálogo o secciones explicativas.</p>
                         <div class="mb-6">
-                            <span class="text-4xl font-extrabold">$50</span>
+                            <span class="text-4xl font-extrabold">$49.99</span>
                             <span class="text-xs text-[var(--text-muted)]">/ USD</span>
                         </div>
                         <ul class="space-y-2.5 text-xs text-[var(--text-main)] mb-6 font-medium">
                             <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Hasta 4 Secciones o Pestañas</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Catálogo de Productos o Servicios</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Formulario de Pedido a WhatsApp</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Optimización de Carga Rápida</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Muestra de Catálogo o Servicios</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Formulario de Cotización a WhatsApp</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Optimización de Carga Ultrarrápida</li>
                         </ul>
                     </div>
-                    <button onclick="selectPlan('Web Avanzado ($50 USD)')" class="w-full py-2.5 rounded-lg btn-primary text-xs font-semibold">
-                        Elegir Plan $50
+                    <button onclick="selectPlan('Web Avanzado ($49.99 USD)')" class="w-full py-2.5 rounded-lg btn-primary text-xs font-semibold">
+                        Elegir Plan $49.99
                     </button>
                 </div>
 
-                <!-- Plan Ultra VIP $100 -->
+                <!-- Plan Ultra VIP $99.99 -->
                 <div class="clean-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
@@ -284,20 +287,20 @@
                             <span class="text-xs px-2 py-0.5 rounded bg-[var(--bg-subtle)] text-[var(--text-muted)] font-medium">VIP</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Web Ultra VIP</h3>
-                        <p class="text-xs text-[var(--text-muted)] mb-4">Máxima personalización, diseño limpio y respuesta rápida.</p>
+                        <p class="text-xs text-[var(--text-muted)] mb-4">Máxima personalización, lógica interactiva y diseño exclusivo.</p>
                         <div class="mb-6">
-                            <span class="text-4xl font-extrabold">$100</span>
+                            <span class="text-4xl font-extrabold">$99.99</span>
                             <span class="text-xs text-[var(--text-muted)]">/ USD</span>
                         </div>
                         <ul class="space-y-2.5 text-xs text-[var(--text-muted)] mb-6">
                             <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Aplicación Web SPA Personalizada</li>
                             <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Adaptación Automática Modo Claro/Oscuro</li>
                             <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Integración de Calculadora e Interacciones</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Asistencia Directa de Brayan Reveth</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Atendido directamente por Brayan Reveth</li>
                         </ul>
                     </div>
-                    <button onclick="selectPlan('Web Ultra VIP ($100 USD)')" class="w-full py-2.5 rounded-lg btn-secondary text-xs font-semibold">
-                        Elegir Plan $100
+                    <button onclick="selectPlan('Web Ultra VIP ($99.99 USD)')" class="w-full py-2.5 rounded-lg btn-secondary text-xs font-semibold">
+                        Elegir Plan $99.99
                     </button>
                 </div>
 
@@ -305,17 +308,17 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- SECCIÓN 2: PUBLICIDAD DIGITAL ($5 - $50)   -->
+        <!-- SECCIÓN 2: PUBLICIDAD DIGITAL ($4.99 - $49.99) -->
         <!-- ========================================== -->
         <div id="view-ads" class="hidden tab-fade max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8">
                 <h2 class="text-2xl font-bold">Planes de Publicidad Digital</h2>
-                <p class="text-xs text-[var(--text-muted)] mt-1">Aumenta tus clientes y ventas de forma directa</p>
+                <p class="text-xs text-[var(--text-muted)] mt-1">Aumenta tu alcance y atrae clientes directamente a tu WhatsApp</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
                 
-                <!-- Ads $5 -->
+                <!-- Ads $4.99 -->
                 <div class="clean-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
@@ -323,23 +326,23 @@
                             <span class="text-xs px-2 py-0.5 rounded bg-[var(--bg-subtle)] text-[var(--text-muted)] font-medium">Básico</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Publicidad Impulso</h3>
-                        <p class="text-xs text-[var(--text-muted)] mb-4">Promoción inicial para ganar visibilidad rápida.</p>
+                        <p class="text-xs text-[var(--text-muted)] mb-4">Campañas iniciales de prueba para ganar exposición.</p>
                         <div class="mb-6">
-                            <span class="text-4xl font-extrabold">$5</span>
+                            <span class="text-4xl font-extrabold">$4.99</span>
                             <span class="text-xs text-[var(--text-muted)]">/ USD</span>
                         </div>
                         <ul class="space-y-2.5 text-xs text-[var(--text-muted)] mb-6">
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Configuración de Anuncio Simple</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Segmentación por Ubicación Básica</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Enlace a WhatsApp</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Configuración Básica de Anuncio</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Segmentación por Ubicación</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Botón Directo a WhatsApp</li>
                         </ul>
                     </div>
-                    <button onclick="selectPlan('Publicidad Impulso ($5 USD)')" class="w-full py-2.5 rounded-lg btn-secondary text-xs font-semibold">
-                        Elegir Plan $5
+                    <button onclick="selectPlan('Publicidad Impulso ($4.99 USD)')" class="w-full py-2.5 rounded-lg btn-secondary text-xs font-semibold">
+                        Elegir Plan $4.99
                     </button>
                 </div>
 
-                <!-- Ads $15 (RECOMENDADO) -->
+                <!-- Ads $14.99 (RECOMENDADO) -->
                 <div class="clean-card rounded-2xl p-6 flex flex-col justify-between border-2 border-[var(--accent)] relative">
                     <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--accent)] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
                         Recomendado
@@ -350,24 +353,24 @@
                             <span class="text-xs px-2 py-0.5 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-medium">Estratégico</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Publicidad Estratégica</h3>
-                        <p class="text-xs text-[var(--text-muted)] mb-4">Campaña enfocada en atraer clientes potenciales reales.</p>
+                        <p class="text-xs text-[var(--text-muted)] mb-4">Campaña enfocada en generar conversaciones y clientes reales.</p>
                         <div class="mb-6">
-                            <span class="text-4xl font-extrabold">$15</span>
+                            <span class="text-4xl font-extrabold">$14.99</span>
                             <span class="text-xs text-[var(--text-muted)]">/ USD</span>
                         </div>
                         <ul class="space-y-2.5 text-xs text-[var(--text-main)] mb-6 font-medium">
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Segmentación por Intereses del Cliente</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Diseño de Imagen/Banner Promocional</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Mensajes Directos a tu WhatsApp</li>
-                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Optimización de Presupuesto</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Segmentación Avanzada por Intereses</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Diseño de Banner o Imagen Promocional</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Recepción de Clientes en WhatsApp</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[var(--accent)] mr-2"></i> Optimización de Presupuesto Diarios</li>
                         </ul>
                     </div>
-                    <button onclick="selectPlan('Publicidad Estratégica ($15 USD)')" class="w-full py-2.5 rounded-lg btn-primary text-xs font-semibold">
-                        Elegir Plan $15
+                    <button onclick="selectPlan('Publicidad Estratégica ($14.99 USD)')" class="w-full py-2.5 rounded-lg btn-primary text-xs font-semibold">
+                        Elegir Plan $14.99
                     </button>
                 </div>
 
-                <!-- Ads $50 -->
+                <!-- Ads $49.99 -->
                 <div class="clean-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
@@ -375,19 +378,19 @@
                             <span class="text-xs px-2 py-0.5 rounded bg-[var(--bg-subtle)] text-[var(--text-muted)] font-medium">Escala</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Dominio Total</h3>
-                        <p class="text-xs text-[var(--text-muted)] mb-4">Para empresas que buscan maximizar ventas masivas.</p>
+                        <p class="text-xs text-[var(--text-muted)] mb-4">Estrategia integral para posicionamiento acelerado.</p>
                         <div class="mb-6">
-                            <span class="text-4xl font-extrabold">$50</span>
+                            <span class="text-4xl font-extrabold">$49.99</span>
                             <span class="text-xs text-[var(--text-muted)]">/ USD</span>
                         </div>
                         <ul class="space-y-2.5 text-xs text-[var(--text-muted)] mb-6">
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Múltiples Variaciones de Anuncios</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Cobertura Amplia / Regional</li>
-                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Asesoría de Atención de Ventas</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Pruebas A/B de Múltiples Anuncios</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Cobertura Geográfica Regional</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[var(--accent)] mr-2"></i> Asesoría Personalizada de Respuesta</li>
                         </ul>
                     </div>
-                    <button onclick="selectPlan('Publicidad Dominio Total ($50 USD)')" class="w-full py-2.5 rounded-lg btn-secondary text-xs font-semibold">
-                        Elegir Plan $50
+                    <button onclick="selectPlan('Publicidad Dominio Total ($49.99 USD)')" class="w-full py-2.5 rounded-lg btn-secondary text-xs font-semibold">
+                        Elegir Plan $49.99
                     </button>
                 </div>
 
@@ -399,60 +402,60 @@
         <!-- ========================================== -->
         <div id="view-calc" class="hidden tab-fade max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold">Calculadora de Presupuesto</h2>
-                <p class="text-xs text-[var(--text-muted)] mt-1">Calcula el costo total con los agregados que necesites</p>
+                <h2 class="text-2xl font-bold">Calculadora de Presupuesto Dinámica</h2>
+                <p class="text-xs text-[var(--text-muted)] mt-1">Suma servicios adicionales y calcula tu monto final al instante</p>
             </div>
 
             <div class="clean-card rounded-2xl p-6 sm:p-8 space-y-6">
                 <div>
                     <label for="calc-service" class="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                        1. Selecciona el Servicio Principal
+                        1. Elige el Servicio Principal
                     </label>
                     <select id="calc-service" onchange="calculateTotal()" class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--input-bg)] text-[var(--text-main)] text-sm font-medium focus:outline-none focus:border-[var(--accent)]">
-                        <option value="25" data-title="Página Web Básica ($25)">Web Básico - $25 USD</option>
-                        <option value="50" data-title="Página Web Avanzada ($50)" selected>Web Avanzado - $50 USD</option>
-                        <option value="100" data-title="Página Web Ultra VIP ($100)">Web Ultra VIP - $100 USD</option>
-                        <option value="5" data-title="Publicidad Impulso ($5)">Publicidad Impulso - $5 USD</option>
-                        <option value="15" data-title="Publicidad Estratégica ($15)">Publicidad Estratégica - $15 USD</option>
-                        <option value="50" data-title="Publicidad Dominio Total ($50)">Publicidad Dominio Total - $50 USD</option>
+                        <option value="24.99" data-title="Página Web Básica ($24.99)">Web Básico - $24.99 USD</option>
+                        <option value="49.99" data-title="Página Web Avanzada ($49.99)" selected>Web Avanzado - $49.99 USD</option>
+                        <option value="99.99" data-title="Página Web Ultra VIP ($99.99)">Web Ultra VIP - $99.99 USD</option>
+                        <option value="4.99" data-title="Publicidad Impulso ($4.99)">Publicidad Impulso - $4.99 USD</option>
+                        <option value="14.99" data-title="Publicidad Estratégica ($14.99)">Publicidad Estratégica - $14.99 USD</option>
+                        <option value="49.99" data-title="Publicidad Dominio Total ($49.99)">Publicidad Dominio Total - $49.99 USD</option>
                     </select>
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-3">
-                        2. Agregados Opcionales
+                        2. Opciones Adicionales
                     </label>
                     <div class="space-y-2.5 text-xs">
                         <label class="flex items-center justify-between p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-subtle)] cursor-pointer hover:border-[var(--border-hover)]">
                             <div class="flex items-center">
-                                <input type="checkbox" id="add-domain" value="20" onchange="calculateTotal()" class="w-4 h-4 accent-[var(--accent)] rounded">
-                                <span class="ml-2.5 font-medium">Dominio personalizado .COM + Hosting por 1 año</span>
+                                <input type="checkbox" id="add-domain" value="20.00" onchange="calculateTotal()" class="w-4 h-4 accent-[var(--accent)] rounded">
+                                <span class="ml-2.5 font-medium">Dominio .COM + Hosting por 1 año</span>
                             </div>
-                            <span class="font-bold text-[var(--accent)]">+$20 USD</span>
+                            <span class="font-bold text-[var(--accent)]">+$20.00 USD</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-subtle)] cursor-pointer hover:border-[var(--border-hover)]">
                             <div class="flex items-center">
-                                <input type="checkbox" id="add-seo" value="30" onchange="calculateTotal()" class="w-4 h-4 accent-[var(--accent)] rounded">
-                                <span class="ml-2.5 font-medium">Optimización SEO Básico de Búsqueda</span>
+                                <input type="checkbox" id="add-seo" value="30.00" onchange="calculateTotal()" class="w-4 h-4 accent-[var(--accent)] rounded">
+                                <span class="ml-2.5 font-medium">Optimización SEO Básico para Buscadores</span>
                             </div>
-                            <span class="font-bold text-[var(--accent)]">+$30 USD</span>
+                            <span class="font-bold text-[var(--accent)]">+$30.00 USD</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-subtle)] cursor-pointer hover:border-[var(--border-hover)]">
                             <div class="flex items-center">
-                                <input type="checkbox" id="add-express" value="25" onchange="calculateTotal()" class="w-4 h-4 accent-[var(--accent)] rounded">
+                                <input type="checkbox" id="add-express" value="25.00" onchange="calculateTotal()" class="w-4 h-4 accent-[var(--accent)] rounded">
                                 <span class="ml-2.5 font-medium">Entrega Express Prioritaria (24-48 horas)</span>
                             </div>
-                            <span class="font-bold text-[var(--accent)]">+$25 USD</span>
+                            <span class="font-bold text-[var(--accent)]">+$25.00 USD</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-subtle)] cursor-pointer hover:border-[var(--border-hover)]">
                             <div class="flex items-center">
-                                <input type="checkbox" id="add-copy" value="15" onchange="calculateTotal()" class="w-4 h-4 accent-[var(--accent)] rounded">
-                                <span class="ml-2.5 font-medium">Redacción de Textos Persuasivos</span>
+                                <input type="checkbox" id="add-copy" value="15.00" onchange="calculateTotal()" class="w-4 h-4 accent-[var(--accent)] rounded">
+                                <span class="ml-2.5 font-medium">Redacción de Textos Persuasivos (Copywriting)</span>
                             </div>
-                            <span class="font-bold text-[var(--accent)]">+$15 USD</span>
+                            <span class="font-bold text-[var(--accent)]">+$15.00 USD</span>
                         </label>
                     </div>
                 </div>
@@ -460,7 +463,7 @@
                 <div class="p-4 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border-color)] flex flex-col sm:flex-row justify-between items-center gap-3">
                     <div>
                         <span class="text-[10px] uppercase font-bold text-[var(--text-muted)]">Costo Total Estimado</span>
-                        <div id="calc-total" class="text-3xl font-extrabold text-[var(--accent)]">$50 USD</div>
+                        <div id="calc-total" class="text-3xl font-extrabold text-[var(--accent)]">$49.99 USD</div>
                     </div>
                     <button onclick="sendCalculatedQuote()" class="btn-primary px-5 py-2.5 rounded-lg text-xs font-semibold flex items-center">
                         <i class="fa-brands fa-whatsapp text-base mr-2"></i> Enviar Cotización por WhatsApp
@@ -475,37 +478,37 @@
         <div id="view-faq" class="hidden tab-fade max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8">
                 <h2 class="text-2xl font-bold">Preguntas Frecuentes</h2>
-                <p class="text-xs text-[var(--text-muted)] mt-1">Resuelve tus dudas antes de iniciar</p>
+                <p class="text-xs text-[var(--text-muted)] mt-1">Aclara tus dudas antes de contratar tu proyecto</p>
             </div>
 
             <div class="space-y-3">
                 <div class="clean-card rounded-xl overflow-hidden">
                     <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center">
-                        <span>¿Cómo es el proceso de entrega de la página?</span>
+                        <span>¿Cuánto tiempo toma la entrega de la página web?</span>
                         <i id="faq-icon-1" class="fa-solid fa-chevron-down text-xs transition-transform"></i>
                     </button>
                     <div id="faq-text-1" class="hidden px-4 pb-4 text-xs text-[var(--text-muted)] leading-relaxed border-t border-[var(--border-color)] pt-3">
-                        Una vez confirmado tu pedido por WhatsApp, me das la información de tu negocio y en un lapso de 24 horas a 4 días (según el plan) tu página estará lista y publicada en línea.
+                        Depende del plan seleccionado. El plan básico de $24.99 USD se entrega en 24 a 48 horas. Planes más avanzados toman entre 2 y 5 días.
                     </div>
                 </div>
 
                 <div class="clean-card rounded-xl overflow-hidden">
                     <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center">
-                        <span>¿Cuáles son los métodos de pago disponibles?</span>
+                        <span>¿Cómo recibo los pedidos de mis clientes?</span>
                         <i id="faq-icon-2" class="fa-solid fa-chevron-down text-xs transition-transform"></i>
                     </button>
                     <div id="faq-text-2" class="hidden px-4 pb-4 text-xs text-[var(--text-muted)] leading-relaxed border-t border-[var(--border-color)] pt-3">
-                        Coordinamos directamente por WhatsApp el método que te sea más cómodo (Transferencia, Pago Móvil o divisas electrónicas).
+                        Tu página web se conecta directamente con tu número personal de WhatsApp. Cuando un cliente elige un servicio o llena un formulario, el mensaje te llega listo y estructurado a tu chat.
                     </div>
                 </div>
 
                 <div class="clean-card rounded-xl overflow-hidden">
                     <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center">
-                        <span>¿La página funciona bien en teléfonos móviles?</span>
+                        <span>¿Funciona bien en dispositivos móviles?</span>
                         <i id="faq-icon-3" class="fa-solid fa-chevron-down text-xs transition-transform"></i>
                     </button>
                     <div id="faq-text-3" class="hidden px-4 pb-4 text-xs text-[var(--text-muted)] leading-relaxed border-t border-[var(--border-color)] pt-3">
-                        Sí, el 100% de los proyectos que desarrollo son totalmente adaptables (Responsive) y se ven perfectos en celulares, tablets y computadoras.
+                        Totalmente. Todos los proyectos desarrollados en GHTY STUDIO son 100% responsivos y adaptables para teléfonos inteligentes, tablets y computadoras.
                     </div>
                 </div>
             </div>
@@ -517,9 +520,9 @@
         <section id="contacto" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
             <div class="clean-card rounded-2xl p-6 sm:p-8">
                 <div class="mb-6">
-                    <h3 class="text-xl font-bold">Haz tu Pedido Directo</h3>
+                    <h3 class="text-xl font-bold">Solicita tu Servicio Directo</h3>
                     <p class="text-xs text-[var(--text-muted)] mt-1">
-                        Llena este formulario y se abrirá tu WhatsApp con los datos listos para enviárselos a Brayan Reveth.
+                        Completa tus datos y la información se preparará en tu WhatsApp para enviársela a Brayan Reveth.
                     </p>
                 </div>
 
@@ -545,21 +548,21 @@
                         <select id="form-service" required class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--input-bg)] text-sm font-medium focus:outline-none focus:border-[var(--accent)]">
                             <option value="" disabled selected>Selecciona una opción...</option>
                             <optgroup label="Desarrollo Web">
-                                <option value="Web Básico ($25 USD)">Web Básico - $25 USD</option>
-                                <option value="Web Avanzado ($50 USD)">Web Avanzado - $50 USD</option>
-                                <option value="Web Ultra VIP ($100 USD)">Web Ultra VIP - $100 USD</option>
+                                <option value="Web Básico ($24.99 USD)">Web Básico - $24.99 USD</option>
+                                <option value="Web Avanzado ($49.99 USD)">Web Avanzado - $49.99 USD</option>
+                                <option value="Web Ultra VIP ($99.99 USD)">Web Ultra VIP - $99.99 USD</option>
                             </optgroup>
                             <optgroup label="Publicidad Digital">
-                                <option value="Publicidad Impulso ($5 USD)">Publicidad Impulso - $5 USD</option>
-                                <option value="Publicidad Estratégica ($15 USD)">Publicidad Estratégica - $15 USD</option>
-                                <option value="Publicidad Dominio Total ($50 USD)">Publicidad Dominio Total - $50 USD</option>
+                                <option value="Publicidad Impulso ($4.99 USD)">Publicidad Impulso - $4.99 USD</option>
+                                <option value="Publicidad Estratégica ($14.99 USD)">Publicidad Estratégica - $14.99 USD</option>
+                                <option value="Publicidad Dominio Total ($49.99 USD)">Publicidad Dominio Total - $49.99 USD</option>
                             </optgroup>
                         </select>
                     </div>
 
                     <div>
-                        <label for="form-notes" class="block text-xs font-semibold text-[var(--text-muted)] mb-1">Detalles o Idea de tu Página</label>
-                        <textarea id="form-notes" rows="3" required class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--input-bg)] text-sm font-medium focus:outline-none focus:border-[var(--accent)] resize-none" placeholder="Escribe brevemente sobre tu negocio o lo que te gustaría incluir..."></textarea>
+                        <label for="form-notes" class="block text-xs font-semibold text-[var(--text-muted)] mb-1">Detalles o Idea del Proyecto</label>
+                        <textarea id="form-notes" rows="3" required class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--input-bg)] text-sm font-medium focus:outline-none focus:border-[var(--accent)] resize-none" placeholder="Cuéntame brevemente sobre tu negocio o qué requerimientos tienes..."></textarea>
                     </div>
 
                     <button type="submit" class="w-full py-3.5 rounded-xl btn-primary text-xs font-bold uppercase tracking-wider flex items-center justify-center">
@@ -571,7 +574,7 @@
 
     </main>
 
-    <!-- PIE DE PÁGINA OBLIGATORIO -->
+    <!-- PIE DE PÁGINA -->
     <footer class="border-t border-[var(--border-color)] py-6 bg-[var(--bg-card)] mt-12">
         <div class="max-w-6xl mx-auto px-4 text-center">
             <p class="text-xs text-[var(--text-muted)] font-medium">
@@ -581,10 +584,10 @@
     </footer>
 
     <script>
-        /* NÚMERO DE WHATSAPP REGISTRADO */
+        /* NÚMERO PERSONAL DE WHATSAPP */
         const PHONE = "584241458724";
 
-        /* CAMBIO DE VISTAS (SPA) */
+        /* SISTEMA DE PESTAÑAS (SPA ROUTER) */
         function switchTab(tabKey) {
             const tabs = ['web', 'ads', 'calc', 'faq'];
 
@@ -621,7 +624,7 @@
             toggleBtn.classList.remove('is-open');
         }
 
-        /* FAQ ACCORDION TOGGLE */
+        /* PREGUNTAS FRECUENTES (FAQ) ACCORDION */
         function toggleFaq(id) {
             const text = document.getElementById(`faq-text-${id}`);
             const icon = document.getElementById(`faq-icon-${id}`);
@@ -635,17 +638,17 @@
             }
         }
 
-        /* CÁLCULO DE PRESUPUESTO EN VIVO */
+        /* CALCULADORA DE PRESUPUESTO EN TIEMPO REAL */
         function calculateTotal() {
             const select = document.getElementById('calc-service');
-            let total = parseInt(select.value);
+            let total = parseFloat(select.value);
 
-            if (document.getElementById('add-domain').checked) total += parseInt(document.getElementById('add-domain').value);
-            if (document.getElementById('add-seo').checked) total += parseInt(document.getElementById('add-seo').value);
-            if (document.getElementById('add-express').checked) total += parseInt(document.getElementById('add-express').value);
-            if (document.getElementById('add-copy').checked) total += parseInt(document.getElementById('add-copy').value);
+            if (document.getElementById('add-domain').checked) total += parseFloat(document.getElementById('add-domain').value);
+            if (document.getElementById('add-seo').checked) total += parseFloat(document.getElementById('add-seo').value);
+            if (document.getElementById('add-express').checked) total += parseFloat(document.getElementById('add-express').value);
+            if (document.getElementById('add-copy').checked) total += parseFloat(document.getElementById('add-copy').value);
 
-            document.getElementById('calc-total').innerText = `$${total} USD`;
+            document.getElementById('calc-total').innerText = `$${total.toFixed(2)} USD`;
         }
 
         function sendCalculatedQuote() {
@@ -654,13 +657,13 @@
             const total = document.getElementById('calc-total').innerText;
 
             let extras = [];
-            if (document.getElementById('add-domain').checked) extras.push("Dominio + Hosting ($20)");
-            if (document.getElementById('add-seo').checked) extras.push("SEO Básico ($30)");
-            if (document.getElementById('add-express').checked) extras.push("Entrega Express ($25)");
-            if (document.getElementById('add-copy').checked) extras.push("Copywriting ($15)");
+            if (document.getElementById('add-domain').checked) extras.push("Dominio + Hosting ($20.00)");
+            if (document.getElementById('add-seo').checked) extras.push("SEO Básico ($30.00)");
+            if (document.getElementById('add-express').checked) extras.push("Entrega Express ($25.00)");
+            if (document.getElementById('add-copy').checked) extras.push("Copywriting ($15.00)");
 
-            let msg = `*Hola Brayan Reveth (ghty studio)* 👋\n\n`;
-            msg += `He realizado una cotización en la Calculadora:\n\n`;
+            let msg = `*Hola Brayan Reveth (GHTY STUDIO)* 👋\n\n`;
+            msg += `He realizado una cotización desde la Calculadora:\n\n`;
             msg += `📌 *Servicio Base:* ${serviceName}\n`;
             msg += `➕ *Agregados:* ${extras.length > 0 ? extras.join(', ') : 'Ninguno'}\n`;
             msg += `💰 *Presupuesto Estimado:* ${total}\n\n`;
@@ -669,13 +672,13 @@
             window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        /* SELECCIONAR PLAN DESDE TARJETAS */
+        /* SELECCIÓN AUTOMÁTICA DE PLAN */
         function selectPlan(planName) {
             document.getElementById('form-service').value = planName;
             document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
         }
 
-        /* ENVÍO DE FORMULARIO A WHATSAPP */
+        /* ENVÍO DEL FORMULARIO DE PEDIDO */
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -685,13 +688,13 @@
             const service = document.getElementById('form-service').value;
             const notes = document.getElementById('form-notes').value.trim();
 
-            let msg = `*¡Hola Brayan Reveth! (ghty studio)* 👋\n\n`;
-            msg += `Quiero hacer una consulta / pedido de servicio:\n\n`;
+            let msg = `*¡Hola Brayan Reveth! (GHTY STUDIO)* 👋\n\n`;
+            msg += `Quiero hacer una solicitud de servicio:\n\n`;
             msg += `👤 *Nombre:* ${name}\n`;
             msg += `📧 *Correo:* ${email}\n`;
             msg += `📞 *Teléfono:* ${phone}\n`;
             msg += `🎯 *Servicio:* ${service}\n\n`;
-            msg += `📝 *Detalles:*\n${notes}\n\n`;
+            msg += `📝 *Detalles del Proyecto:*\n${notes}\n\n`;
             msg += `Quedo atento a tu respuesta.`;
 
             window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
