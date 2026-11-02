@@ -18,8 +18,10 @@
 
     <style>
         :root {
+            /* TEMA CLARO */
             --bg-body: #fafafa;
             --bg-card: #ffffff;
+            --bg-card-hover: #ffffff;
             --bg-subtle: #f4f4f5;
             --bg-nav: rgba(250, 250, 250, 0.88);
             --text-main: #09090b;
@@ -35,8 +37,10 @@
         }
 
         .dark {
+            /* TEMA OSCURO */
             --bg-body: #09090b;
             --bg-card: #18181b;
+            --bg-card-hover: #27272a;
             --bg-subtle: #27272a;
             --bg-nav: rgba(9, 9, 11, 0.88);
             --text-main: #fafafa;
@@ -55,14 +59,14 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
-            content-visibility: auto;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .clean-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             box-shadow: var(--card-shadow);
-            transition: border-color 0.2s ease, transform 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .clean-card:hover {
@@ -72,12 +76,13 @@
         .btn-primary {
             background-color: var(--accent);
             color: #ffffff;
-            transition: background-color 0.2s ease, transform 0.1s ease;
+            transition: all 0.2s ease;
         }
 
         .btn-primary:hover {
             background-color: var(--accent-hover);
             transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
         }
 
         .btn-secondary {
@@ -89,48 +94,34 @@
 
         .btn-secondary:hover {
             border-color: var(--border-hover);
-            background-color: var(--bg-card);
+            background-color: var(--bg-card-hover);
         }
 
         .tab-fade {
-            animation: fadeIn 0.2s ease forwards;
+            animation: fadeIn 0.35s ease forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ========================================================== */
-        /* ACELERACIÓN POR HARDWARE GPU MÁXIMA (0 TIRONES / 60+ FPS)  */
-        /* ========================================================== */
-        .chat-widget-window {
-            will-change: transform, opacity;
-            transform: translate3d(0, 12px, 0) scale(0.96);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
-                        opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
-                        visibility 0.22s ease;
-        }
-
-        .chat-widget-window.is-active {
-            transform: translate3d(0, 0, 0) scale(1);
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
         }
 
         .hamburger-bar {
             background-color: var(--text-main);
-            transition: transform 0.25s ease, opacity 0.25s ease;
+            transition: all 0.3s ease;
         }
         .is-open .bar-1 { transform: translateY(6px) rotate(45deg); }
         .is-open .bar-2 { opacity: 0; }
         .is-open .bar-3 { transform: translateY(-6px) rotate(-45deg); }
+
+        .chat-slide-up {
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between antialiased">
@@ -165,7 +156,7 @@
                         Calculadora ROI
                     </button>
                     <button onclick="switchTab('audit')" id="tab-btn-audit" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-1 text-emerald-500">
-                        ⚡ Fuga de Dinero
+                        ⚡ Auditoría Fuga de Dinero
                     </button>
                     <button onclick="switchTab('proof')" id="tab-btn-proof" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-1">
                         Resultados
@@ -521,7 +512,7 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- SECCIÓN 4: AUDITORÍA DE FUGA DE DINERO     -->
+        <!-- SECCIÓN 4: AUDITORÍA DE FUGA DE DINERO (NUEVO)-->
         <!-- ========================================== -->
         <div id="view-audit" class="hidden tab-fade max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8">
@@ -740,57 +731,74 @@
         </div>
     </footer>
 
-    <!-- ========================================================== -->
-    <!-- WIDGET FLOTANTE DE CHAT / WHATSAPP (ULTRA FLUIDO 60+ FPS)   -->
-    <!-- ========================================================== -->
+    <!-- ========================================== -->
+    <!-- WIDGET DE CHATBOT INTELIGENTE (ESTILO GEMINI)-->
+    <!-- ========================================== -->
     <div class="fixed bottom-5 right-5 z-50">
 
         <!-- BOTÓN PRINCIPAL FLOTANTE -->
-        <button onclick="toggleChatWindow()" class="w-14 h-14 rounded-full btn-primary flex items-center justify-center shadow-2xl relative transition-transform hover:scale-105 active:scale-95 focus:outline-none">
-            <i class="fa-solid fa-comments text-xl"></i>
+        <button id="chatbot-toggle" onclick="toggleChatbot()" class="w-14 h-14 rounded-full btn-primary flex items-center justify-center shadow-2xl relative transition-transform hover:scale-110 active:scale-95">
+            <i id="chatbot-icon-open" class="fa-solid fa-robot text-xl"></i>
+            <i id="chatbot-icon-close" class="fa-solid fa-xmark text-xl hidden"></i>
             <span class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full"></span>
         </button>
 
-        <!-- VENTANA FLOTANTE DE ACCESO RÁPIDO -->
-        <div id="chat-widget-window" class="chat-widget-window absolute bottom-16 right-0 w-80 sm:w-88 clean-card rounded-2xl shadow-2xl overflow-hidden border border-[var(--border-color)]">
+        <!-- VENTANA DEL CHATBOT -->
+        <div id="chatbot-window" class="hidden chat-slide-up absolute bottom-16 right-0 w-80 sm:w-96 clean-card rounded-2xl shadow-2xl overflow-hidden border border-[var(--border-color)] flex flex-col h-[480px]">
             
-            <!-- HEADER -->
-            <div class="bg-[var(--accent)] text-white p-4 flex items-center justify-between">
+            <!-- HEADER DEL CHATBOT -->
+            <div class="bg-[var(--accent)] text-white p-4 flex items-center justify-between flex-shrink-0">
                 <div class="flex items-center space-x-3">
-                    <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold">
-                        BR
+                    <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-robot"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-xs leading-tight">Brayan Reveth</h4>
+                        <h4 class="font-bold text-xs leading-tight">GHTY Assistant (IA)</h4>
                         <span class="text-[10px] text-white/80 flex items-center">
-                            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-1.5 animate-pulse"></span> GHTY STUDIO (En línea)
+                            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-1.5 animate-pulse"></span> Pensamiento Activo 24/7
                         </span>
                     </div>
                 </div>
-                <button onclick="toggleChatWindow()" class="text-white/80 hover:text-white p-1">
+                <button onclick="toggleChatbot()" class="text-white/80 hover:text-white p-1">
                     <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
 
-            <!-- CUERPO DE BIENVENIDA Y ACCESO A CHAT DIRECTO -->
-            <div class="p-4 bg-[var(--bg-body)] space-y-3">
-                <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-3 rounded-2xl rounded-tl-none text-xs text-[var(--text-main)] shadow-sm leading-relaxed">
-                    ¡Hola! 👋 Soy <strong>Brayan Reveth</strong>, fundador de GHTY STUDIO. ¿Listo para escalar tus ventas o tienes alguna duda sobre nuestros sistemas high-ticket?
+            <!-- CUERPO DE MENSAJES -->
+            <div id="chat-messages" class="p-4 space-y-3 flex-grow overflow-y-auto text-xs bg-[var(--bg-body)]">
+                <!-- Mensaje Inicial -->
+                <div class="flex flex-col items-start space-y-1">
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-3 rounded-2xl rounded-tl-none max-w-[88%] text-[var(--text-main)] shadow-sm leading-relaxed">
+                        ¡Hola! 👋 Soy el asistente inteligente de <strong>GHTY STUDIO</strong> fundado por Brayan Reveth. Pregúntame lo que desees sobre nuestros sistemas de ventas, precios o automatización. ¿En qué te ayudo?
+                    </div>
+                    <span class="text-[9px] text-[var(--text-muted)] pl-1">Hace un momento</span>
                 </div>
+            </div>
 
-                <a href="https://wa.me/584241458724?text=%C2%A1Hola%20Brayan!%20Vengo%20de%20tu%20web%20y%20quiero%20conversar%20sobre%20tus%20sistemas%20de%20ventas." target="_blank" class="w-full py-3 rounded-xl btn-primary text-xs font-bold uppercase tracking-wider flex items-center justify-center shadow-sm">
-                    <i class="fa-brands fa-whatsapp text-base mr-2"></i> Iniciar Chat en WhatsApp
-                </a>
+            <!-- INPUT DE TEXTO LIBRE (ESTILO GEMINI) -->
+            <div class="p-3 border-t border-[var(--border-color)] bg-[var(--bg-card)] flex-shrink-0">
+                <form id="chat-form" onsubmit="handleUserChatInput(event)" class="flex items-center space-x-2">
+                    <input type="text" id="chat-input" placeholder="Escribe tu consulta aquí..." class="flex-grow p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--input-bg)] text-xs font-medium focus:outline-none focus:border-[var(--accent)]">
+                    <button type="submit" class="btn-primary px-3.5 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+                <div class="flex justify-between items-center mt-2 px-1">
+                    <span class="text-[9px] text-[var(--text-muted)]">💡 Pregunta libre o usa los botones</span>
+                    <button onclick="openWhatsAppDirect()" class="text-[10px] text-[var(--accent)] font-semibold hover:underline">
+                        <i class="fa-brands fa-whatsapp"></i> Hablar con Brayan
+                    </button>
+                </div>
             </div>
 
         </div>
     </div>
 
-    <!-- SCRIPT DE NAVEGACIÓN Y RENDIMIENTO -->
     <script>
+        /* NÚMERO PERSONAL DE WHATSAPP */
         const PHONE = "584241458724";
 
-        /* MODO OSCURO / CLARO */
+        /* SISTEMA DE MODO OSCURO / CLARO */
         function toggleDarkMode() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-toggle-icon');
@@ -807,6 +815,7 @@
             }
         }
 
+        /* AUTO DETECCIÓN DE PREFERENCIA DE TEMA DEL SISTEMA */
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
             const icon = document.getElementById('theme-toggle-icon');
@@ -815,7 +824,7 @@
             if (mobIcon) mobIcon.className = "fa-solid fa-sun text-xs";
         }
 
-        /* NAVEGACIÓN SPA */
+        /* SISTEMA DE PESTAÑAS (SPA ROUTER) */
         function switchTab(tabKey) {
             const tabs = ['systems', 'traffic', 'calc', 'audit', 'proof', 'faq'];
 
@@ -840,7 +849,7 @@
             closeMobileMenu();
         }
 
-        /* MENÚ MÓVIL */
+        /* MENÚ HAMBURGUESA */
         const toggleBtn = document.getElementById('hamburger-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -854,7 +863,7 @@
             toggleBtn.classList.remove('is-open');
         }
 
-        /* FAQ ACCORDION */
+        /* PREGUNTAS FRECUENTES (FAQ) ACCORDION */
         function toggleFaq(id) {
             const text = document.getElementById(`faq-text-${id}`);
             const icon = document.getElementById(`faq-icon-${id}`);
@@ -868,7 +877,7 @@
             }
         }
 
-        /* CALCULADORA DE ROI */
+        /* CALCULADORA DE INVERSIÓN EN TIEMPO REAL */
         function calculateTotal() {
             const select = document.getElementById('calc-service');
             let total = parseFloat(select.value);
@@ -906,17 +915,20 @@
         function calculateAudit() {
             const leads = parseFloat(document.getElementById('audit-leads').value) || 0;
             const ticket = parseFloat(document.getElementById('audit-ticket').value) || 0;
+            // Cálculo: 80% de los leads se pierden por lentitud, y de esos un 15% se habrían cerrado
             const lostSales = leads * 0.15;
             const totalLoss = lostSales * ticket;
 
             document.getElementById('audit-loss').innerText = `$${Math.round(totalLoss).toLocaleString('en-US')} USD`;
         }
 
+        /* SELECCIÓN AUTOMÁTICA DE PLAN */
         function selectPlan(planName) {
             document.getElementById('form-service').value = planName;
             document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
         }
 
+        /* ENVÍO DEL FORMULARIO DE ASESORÍA */
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -938,10 +950,99 @@
             window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
         });
 
-        /* CONTROL DE APERTURA DEL WIDGET (GPU ACCELERATED - 0 LAG) */
-        function toggleChatWindow() {
-            const win = document.getElementById('chat-widget-window');
-            win.classList.toggle('is-active');
+        /* LÓGICA DEL CHATBOT INTELIGENTE (ESTILO GEMINI) */
+        function toggleChatbot() {
+            const win = document.getElementById('chatbot-window');
+            const iconOpen = document.getElementById('chatbot-icon-open');
+            const iconClose = document.getElementById('chatbot-icon-close');
+
+            if (win.classList.contains('hidden')) {
+                win.classList.remove('hidden');
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+                document.getElementById('chat-input').focus();
+            } else {
+                win.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        }
+
+        function openWhatsAppDirect() {
+            let msg = `*Hola Brayan Reveth (GHTY STUDIO)* 👋\nVengo desde el chat inteligente de tu sitio web y quiero hablar directamente contigo.`;
+            window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function handleUserChatInput(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            appendUserMessage(text);
+            input.value = '';
+
+            // Simular "pensamiento" del bot tipo Gemini
+            setTimeout(() => {
+                const response = generateAIResponse(text);
+                appendBotMessage(response);
+            }, 600);
+        }
+
+        function appendUserMessage(text) {
+            const container = document.getElementById('chat-messages');
+            const msgHTML = `
+                <div class="flex flex-col items-end space-y-1">
+                    <div class="bg-[var(--accent)] text-white p-3 rounded-2xl rounded-tr-none max-w-[88%] leading-relaxed shadow-sm">
+                        ${escapeHtml(text)}
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', msgHTML);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function appendBotMessage(htmlContent) {
+            const container = document.getElementById('chat-messages');
+            const msgHTML = `
+                <div class="flex flex-col items-start space-y-1">
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-3 rounded-2xl rounded-tl-none max-w-[88%] text-[var(--text-main)] shadow-sm leading-relaxed">
+                        ${htmlContent}
+                    </div>
+                    <span class="text-[9px] text-[var(--text-muted)] pl-1">Hace un momento</span>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', msgHTML);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        /* CEREBRO INTELIGENTE DEL CHAT (PROCESAMIENTO LÓGICO) */
+        function generateAIResponse(query) {
+            const q = query.toLowerCase();
+
+            if (q.includes('precio') || q.includes('costo') || q.includes('cuánto vale') || q.includes('cuanto vale') || q.includes('planes')) {
+                return `En <strong>GHTY STUDIO</strong> estructuramos sistemas desde el <strong>Funnel de Captación ($1,500 USD)</strong> hasta nuestro <strong>Motor de Ventas Automatizado ($2,500 USD)</strong> y ecosistemas Enterprise. Cada solución está diseñada para generar un ROI que supera con creces la inversión inicial. ¿Te gustaría que te lleve a la sección de sistemas? <br><br><button onclick="switchTab('systems'); toggleChatbot();" class="mt-2 px-3 py-1.5 rounded-lg btn-primary text-[10px] font-semibold">Ver Sistemas y Precios</button>`;
+            } 
+            else if (q.includes('tiempo') || q.includes('demora') || q.includes('tardan') || q.includes('días') || q.includes('dias')) {
+                return `El tiempo estimado de implementación y pruebas de nuestros sistemas es de <strong>10 a 21 días hábiles</strong>. Entregamos una arquitectura SPA de alta velocidad totalmente funcional y conectada con tu WhatsApp/CRM.`;
+            }
+            else if (q.includes('brayan') || q.includes('fundador') || q.includes('quién es') || q.includes('quien es')) {
+                return `<strong>GHTY STUDIO</strong> fue fundado por <strong>Brayan Reveth</strong>, experto en arquitecturas digitales de alta conversión, automatización comercial y pauta publicitaria B2B de alto rendimiento.`;
+            }
+            else if (q.includes('whatsapp') || q.includes('contacto') || q.includes('hablar') || q.includes('reunión') || q.includes('asesoría')) {
+                return `¡Claro! Puedes agendar una asesoría directa con Brayan Reveth haciendo clic en el siguiente botón para abrir WhatsApp de inmediato:<br><br><button onclick="openWhatsAppDirect()" class="mt-2 px-3 py-1.5 rounded-lg btn-primary text-[10px] font-semibold"><i class="fa-brands fa-whatsapp mr-1"></i> Abrir WhatsApp Directo</button>`;
+            }
+            else if (q.includes('crm') || q.includes('bot') || q.includes('automatización') || q.includes('automatizacion')) {
+                return `Nuestros sistemas integran automatización 24/7: captura de tráfico, filtrado automático de leads no cualificados y derivación inmediata a WhatsApp o CRM en menos de 60 segundos para eliminar la fuga de clientes.`;
+            }
+            else {
+                return `Entiendo perfectamente tu consulta. Para darte una respuesta exacta adaptada a tu modelo de negocio, lo ideal es conversar directamente con Brayan Reveth. ¿Te gustaría que te conecte vía WhatsApp?<br><br><button onclick="openWhatsAppDirect()" class="mt-2 px-3 py-1.5 rounded-lg btn-primary text-[10px] font-semibold"><i class="fa-brands fa-whatsapp mr-1"></i> Hablar con Brayan</button>`;
+            }
         }
     </script>
 </body>
