@@ -18,10 +18,8 @@
 
     <style>
         :root {
-            /* TEMA CLARO */
             --bg-body: #fafafa;
             --bg-card: #ffffff;
-            --bg-card-hover: #ffffff;
             --bg-subtle: #f4f4f5;
             --bg-nav: rgba(250, 250, 250, 0.88);
             --text-main: #09090b;
@@ -31,16 +29,14 @@
             --accent: #2563eb;
             --accent-hover: #1d4ed8;
             --accent-soft: rgba(37, 99, 235, 0.08);
-            --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+            --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
             --input-bg: #ffffff;
             --logo-fill: #09090b;
         }
 
         .dark {
-            /* TEMA OSCURO */
             --bg-body: #09090b;
             --bg-card: #18181b;
-            --bg-card-hover: #27272a;
             --bg-subtle: #27272a;
             --bg-nav: rgba(9, 9, 11, 0.88);
             --text-main: #fafafa;
@@ -50,7 +46,7 @@
             --accent: #3b82f6;
             --accent-hover: #60a5fa;
             --accent-soft: rgba(59, 130, 246, 0.15);
-            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
             --input-bg: #18181b;
             --logo-fill: #ffffff;
         }
@@ -59,25 +55,24 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            content-visibility: auto;
         }
 
         .clean-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             box-shadow: var(--card-shadow);
-            transition: all 0.25s ease;
+            transition: border-color 0.2s ease, transform 0.2s ease;
         }
 
         .clean-card:hover {
             border-color: var(--border-hover);
-            transform: translateY(-2px);
         }
 
         .btn-primary {
             background-color: var(--accent);
             color: #ffffff;
-            transition: all 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.1s ease;
         }
 
         .btn-primary:hover {
@@ -94,22 +89,44 @@
 
         .btn-secondary:hover {
             border-color: var(--border-hover);
-            background-color: var(--bg-card-hover);
+            background-color: var(--bg-card);
         }
 
         .tab-fade {
-            animation: fadeIn 0.3s ease forwards;
+            animation: fadeIn 0.2s ease forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
+            from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* HAMBURGER ANIMATION */
+        /* ========================================================== */
+        /* ACELERACIÓN POR HARDWARE GPU MÁXIMA (0 TIRONES / 60+ FPS)  */
+        /* ========================================================== */
+        .chat-widget-window {
+            will-change: transform, opacity;
+            transform: translate3d(0, 12px, 0) scale(0.96);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                        opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                        visibility 0.22s ease;
+        }
+
+        .chat-widget-window.is-active {
+            transform: translate3d(0, 0, 0) scale(1);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
         .hamburger-bar {
             background-color: var(--text-main);
-            transition: all 0.3s ease;
+            transition: transform 0.25s ease, opacity 0.25s ease;
         }
         .is-open .bar-1 { transform: translateY(6px) rotate(45deg); }
         .is-open .bar-2 { opacity: 0; }
@@ -122,7 +139,7 @@
     <header class="sticky top-0 z-50 bg-[var(--bg-nav)] backdrop-blur-md border-b border-[var(--border-color)]">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                
+
                 <!-- Logo Isotipo SVG Geométrico Tech GHTY -->
                 <div class="flex items-center cursor-pointer select-none" onclick="switchTab('systems')">
                     <svg class="w-8 h-8 mr-2.5 transition-transform hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -137,18 +154,24 @@
                 </div>
 
                 <!-- Menú Escritorio -->
-                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                    <button onclick="switchTab('systems')" id="tab-btn-systems" class="text-[var(--accent)] font-semibold transition-colors py-1">
-                        Sistemas de Ventas
+                <nav class="hidden md:flex items-center space-x-5 text-xs font-semibold">
+                    <button onclick="switchTab('systems')" id="tab-btn-systems" class="text-[var(--accent)] transition-colors py-1">
+                        Sistemas
                     </button>
                     <button onclick="switchTab('traffic')" id="tab-btn-traffic" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-1">
-                        Tráfico & Anuncios
+                        Tráfico
                     </button>
                     <button onclick="switchTab('calc')" id="tab-btn-calc" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-1">
                         Calculadora ROI
                     </button>
+                    <button onclick="switchTab('audit')" id="tab-btn-audit" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-1 text-emerald-500">
+                        ⚡ Fuga de Dinero
+                    </button>
+                    <button onclick="switchTab('proof')" id="tab-btn-proof" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-1">
+                        Resultados
+                    </button>
                     <button onclick="switchTab('faq')" id="tab-btn-faq" class="text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-1">
-                        Preguntas FAQ
+                        FAQ
                     </button>
                 </nav>
 
@@ -187,6 +210,12 @@
             <button onclick="switchTab('calc')" id="mob-btn-calc" class="w-full text-left px-3 py-2.5 rounded-lg text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]">
                 Calculadora de ROI
             </button>
+            <button onclick="switchTab('audit')" id="mob-btn-audit" class="w-full text-left px-3 py-2.5 rounded-lg text-emerald-500 font-semibold hover:bg-[var(--bg-subtle)]">
+                ⚡ Auditoría Fuga de Dinero
+            </button>
+            <button onclick="switchTab('proof')" id="mob-btn-proof" class="w-full text-left px-3 py-2.5 rounded-lg text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]">
+                Casos de Éxito & Resultados
+            </button>
             <button onclick="switchTab('faq')" id="mob-btn-faq" class="w-full text-left px-3 py-2.5 rounded-lg text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]">
                 Preguntas Frecuentes
             </button>
@@ -200,22 +229,22 @@
 
         <!-- HERO PRINCIPAL -->
         <section class="max-w-3xl mx-auto px-4 text-center mb-12">
-            <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-soft)] text-[var(--accent)] mb-4">
-                Automatización de Ventas & Adquisición de Clientes
+            <span class="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent-soft)] text-[var(--accent)] mb-4 border border-[var(--accent)]/20">
+                <i class="fa-solid fa-bolt mr-1"></i> Automatización de Ventas & Adquisición de Clientes
             </span>
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
                 Convierte tu negocio en una máquina automatizada de ingresos
             </h1>
             <p class="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-xl mx-auto mb-6">
-                Diseñamos e implementamos embudos de conversión, integración de CRM y secuencias de seguimiento automatizado para empresas de servicios locales y corporativos.
+                Diseñamos e implementamos embudos de conversión, integración de CRM y secuencias de seguimiento automatizado para empresas que buscan escalar su facturación.
             </p>
             <div class="flex justify-center items-center gap-3">
-                <button onclick="switchTab('calc')" class="btn-primary px-5 py-2.5 rounded-lg text-xs font-semibold">
+                <button onclick="switchTab('calc')" class="btn-primary px-5 py-2.5 rounded-lg text-xs font-semibold shadow-sm">
                     Calcular Inversión & Retorno
                 </button>
-                <a href="#contacto" class="btn-secondary px-5 py-2.5 rounded-lg text-xs font-semibold">
-                    Hablar con un Especialista
-                </a>
+                <button onclick="switchTab('audit')" class="btn-secondary px-5 py-2.5 rounded-lg text-xs font-semibold">
+                    Auditar Fuga de Dinero
+                </button>
             </div>
         </section>
 
@@ -229,9 +258,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-                
+
                 <!-- Plan Funnel Básico $1,500 -->
-                <div class="clean-card rounded-2xl p-6 flex flex-col justify-between">
+                <div class="clean-card hover:-translate-y-1 rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
                             <span class="text-xs font-semibold text-[var(--text-muted)]">Captación Directa</span>
@@ -256,8 +285,8 @@
                 </div>
 
                 <!-- Plan Motor de Ventas $2,500 (Recomendado) -->
-                <div class="clean-card rounded-2xl p-6 flex flex-col justify-between border-2 border-[var(--accent)] relative">
-                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--accent)] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
+                <div class="clean-card hover:-translate-y-1 rounded-2xl p-6 flex flex-col justify-between border-2 border-[var(--accent)] relative">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--accent)] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
                         Recomendado
                     </span>
                     <div>
@@ -284,7 +313,7 @@
                 </div>
 
                 <!-- Plan Ecosistema Enterprise $4,500 -->
-                <div class="clean-card rounded-2xl p-6 flex flex-col justify-between">
+                <div class="clean-card hover:-translate-y-1 rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
                             <span class="text-xs font-semibold text-[var(--text-muted)]">Escala Masiva</span>
@@ -309,6 +338,22 @@
                 </div>
 
             </div>
+
+            <!-- GARANTÍA Y CONFIANZA -->
+            <div class="mt-12 clean-card rounded-2xl p-6 bg-[var(--bg-subtle)] flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent)] text-xl flex-shrink-0">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">Garantía de Velocidad & Rendimiento GHTY</h4>
+                        <p class="text-xs text-[var(--text-muted)]">Entregamos tu sistema operando en menos de 21 días con soporte directo de arquitectura por 15 días tras el lanzamiento.</p>
+                    </div>
+                </div>
+                <a href="#contacto" class="btn-secondary px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap">
+                    Conocer Más
+                </a>
+            </div>
         </div>
 
         <!-- ========================================== -->
@@ -321,9 +366,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-                
+
                 <!-- Setup Campañas $500 -->
-                <div class="clean-card rounded-2xl p-6 flex flex-col justify-between">
+                <div class="clean-card hover:-translate-y-1 rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
                             <span class="text-xs font-semibold text-[var(--text-muted)]">Lanzamiento</span>
@@ -347,8 +392,8 @@
                 </div>
 
                 <!-- Gestión Mensual $1,000 (RECOMENDADO) -->
-                <div class="clean-card rounded-2xl p-6 flex flex-col justify-between border-2 border-[var(--accent)] relative">
-                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--accent)] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
+                <div class="clean-card hover:-translate-y-1 rounded-2xl p-6 flex flex-col justify-between border-2 border-[var(--accent)] relative">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--accent)] text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
                         Recomendado
                     </span>
                     <div>
@@ -375,7 +420,7 @@
                 </div>
 
                 <!-- Partner Omnicanal $2,000 -->
-                <div class="clean-card rounded-2xl p-6 flex flex-col justify-between">
+                <div class="clean-card hover:-translate-y-1 rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-center mb-3">
                             <span class="text-xs font-semibold text-[var(--text-muted)]">Dominio Total</span>
@@ -476,7 +521,106 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- SECCIÓN 4: PREGUNTAS FRECUENTES (FAQ)      -->
+        <!-- SECCIÓN 4: AUDITORÍA DE FUGA DE DINERO     -->
+        <!-- ========================================== -->
+        <div id="view-audit" class="hidden tab-fade max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 mb-2">
+                    Herramienta de Diagnóstico Comercial
+                </span>
+                <h2 class="text-2xl font-bold">Auditoría de Fuga de Dinero</h2>
+                <p class="text-xs text-[var(--text-muted)] mt-1">Descubre cuánto capital estás perdiendo cada mes por responder tarde a tus prospectos</p>
+            </div>
+
+            <div class="clean-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
+                            Prospectos / Leads al mes
+                        </label>
+                        <input type="number" id="audit-leads" value="100" oninput="calculateAudit()" class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--input-bg)] text-sm font-medium focus:outline-none focus:border-[var(--accent)]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
+                            Valor Promedio de tu Servicio ($ USD)
+                        </label>
+                        <input type="number" id="audit-ticket" value="500" oninput="calculateAudit()" class="w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--input-bg)] text-sm font-medium focus:outline-none focus:border-[var(--accent)]">
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-[var(--bg-subtle)] border border-[var(--border-color)] text-center space-y-3">
+                    <span class="text-xs uppercase font-bold text-[var(--text-muted)] block">Dinero perdido estimado al mes por respuesta lenta:</span>
+                    <div id="audit-loss" class="text-4xl sm:text-5xl font-extrabold text-rose-500">$6,000 USD</div>
+                    <p class="text-xs text-[var(--text-muted)] max-w-md mx-auto">
+                        Estadísticas de ventas B2B demuestran que si tardas más de 5 minutos en responder, la probabilidad de cerrar el trato cae un <strong class="text-[var(--text-main)]">80%</strong>. El sistema de GHTY STUDIO elimina esta brecha al responder en segundos.
+                    </p>
+                </div>
+
+                <button onclick="switchTab('systems')" class="w-full py-3 rounded-xl btn-primary text-xs font-bold uppercase tracking-wider">
+                    Solucionar esta fuga con un Sistema GHTY ($1.5k - $4.5k)
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECCIÓN 5: CASOS DE ÉXITO & PRUEBA SOCIAL  -->
+        <!-- ========================================== -->
+        <div id="view-proof" class="hidden tab-fade max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-bold">Métricas y Resultados Reales</h2>
+                <p class="text-xs text-[var(--text-muted)] mt-1">Así es como nuestros sistemas impactan los números de nuestros clientes</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                <div class="clean-card p-4 rounded-xl text-center">
+                    <span class="text-2xl sm:text-3xl font-extrabold text-[var(--accent)]">+140%</span>
+                    <span class="block text-[11px] text-[var(--text-muted)] mt-1 font-medium">Tasa de Conversión</span>
+                </div>
+                <div class="clean-card p-4 rounded-xl text-center">
+                    <span class="text-2xl sm:text-3xl font-extrabold text-[var(--accent)]">&lt; 60s</span>
+                    <span class="block text-[11px] text-[var(--text-muted)] mt-1 font-medium">Tiempo de Respuesta</span>
+                </div>
+                <div class="clean-card p-4 rounded-xl text-center">
+                    <span class="text-2xl sm:text-3xl font-extrabold text-[var(--accent)]">+12k</span>
+                    <span class="block text-[11px] text-[var(--text-muted)] mt-1 font-medium">Leads Procesados</span>
+                </div>
+                <div class="clean-card p-4 rounded-xl text-center">
+                    <span class="text-2xl sm:text-3xl font-extrabold text-[var(--accent)]">99.8%</span>
+                    <span class="block text-[11px] text-[var(--text-muted)] mt-1 font-medium">Uptime del Sistema</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="clean-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+                    <p class="text-xs text-[var(--text-muted)] italic leading-relaxed">
+                        "Pasamos de perder prospectos en chats de WhatsApp olvidados a tener un sistema que califica y agenda reuniones automáticamente. La inversión en GHTY STUDIO se pagó sola en las primeras tres semanas."
+                    </p>
+                    <div class="flex items-center space-x-3 pt-2 border-t border-[var(--border-color)]">
+                        <div class="w-8 h-8 rounded-full bg-[var(--accent)] text-white font-bold flex items-center justify-center text-xs">CM</div>
+                        <div>
+                            <span class="text-xs font-bold block">Carlos Mendoza</span>
+                            <span class="text-[10px] text-[var(--text-muted)]">Director de Empresa de Servicios</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clean-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+                    <p class="text-xs text-[var(--text-muted)] italic leading-relaxed">
+                        "La velocidad de la página web SPA y el flujo automatizado de WhatsApp sorprendieron a nuestros clientes. La autoridad de la marca dio un salto gigante inmediato."
+                    </p>
+                    <div class="flex items-center space-x-3 pt-2 border-t border-[var(--border-color)]">
+                        <div class="w-8 h-8 rounded-full bg-[var(--accent-soft)] text-[var(--accent)] font-bold flex items-center justify-center text-xs">AR</div>
+                        <div>
+                            <span class="text-xs font-bold block">Alejandro Rivas</span>
+                            <span class="text-[10px] text-[var(--text-muted)]">Founder & Consultant</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECCIÓN 6: PREGUNTAS FRECUENTES (FAQ)      -->
         <!-- ========================================== -->
         <div id="view-faq" class="hidden tab-fade max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-8">
@@ -486,7 +630,7 @@
 
             <div class="space-y-3">
                 <div class="clean-card rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center">
+                    <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center hover:bg-[var(--bg-subtle)] transition-colors">
                         <span>¿Cuánto tiempo toma implementar un Sistema de Ventas?</span>
                         <i id="faq-icon-1" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
                     </button>
@@ -496,7 +640,7 @@
                 </div>
 
                 <div class="clean-card rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center">
+                    <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center hover:bg-[var(--bg-subtle)] transition-colors">
                         <span>¿Cómo se conectan los leads con mi equipo comercial?</span>
                         <i id="faq-icon-2" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
                     </button>
@@ -506,12 +650,22 @@
                 </div>
 
                 <div class="clean-card rounded-xl overflow-hidden">
-                    <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center">
+                    <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center hover:bg-[var(--bg-subtle)] transition-colors">
                         <span>¿Por qué cambiar de una web tradicional a un Sistema de Adquisición?</span>
                         <i id="faq-icon-3" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
                     </button>
                     <div id="faq-text-3" class="hidden px-4 pb-4 text-xs text-[var(--text-muted)] leading-relaxed border-t border-[var(--border-color)] pt-3">
                         Una página web tradicional solo sirve de adorno informativo. Un Sistema de Adquisición está diseñado científicamente para captar la atención, filtrar curiosos y convertir visitantes en clientes de pago con el menor esfuerzo operativo.
+                    </div>
+                </div>
+
+                <div class="clean-card rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center hover:bg-[var(--bg-subtle)] transition-colors">
+                        <span>¿Qué pasarelas o medios de pago aceptan para la contratación?</span>
+                        <i id="faq-icon-4" class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-text-4" class="hidden px-4 pb-4 text-xs text-[var(--text-muted)] leading-relaxed border-t border-[var(--border-color)] pt-3">
+                        Aceptamos transferencias bancarias internacionales, Stripe, PayPal y pagos digitales/cripto (USDT), estructurados generalmente en un 50% inicial y 50% contra entrega probada.
                     </div>
                 </div>
             </div>
@@ -586,16 +740,62 @@
         </div>
     </footer>
 
+    <!-- ========================================================== -->
+    <!-- WIDGET FLOTANTE DE CHAT / WHATSAPP (ULTRA FLUIDO 60+ FPS)   -->
+    <!-- ========================================================== -->
+    <div class="fixed bottom-5 right-5 z-50">
+
+        <!-- BOTÓN PRINCIPAL FLOTANTE -->
+        <button onclick="toggleChatWindow()" class="w-14 h-14 rounded-full btn-primary flex items-center justify-center shadow-2xl relative transition-transform hover:scale-105 active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-comments text-xl"></i>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full"></span>
+        </button>
+
+        <!-- VENTANA FLOTANTE DE ACCESO RÁPIDO -->
+        <div id="chat-widget-window" class="chat-widget-window absolute bottom-16 right-0 w-80 sm:w-88 clean-card rounded-2xl shadow-2xl overflow-hidden border border-[var(--border-color)]">
+            
+            <!-- HEADER -->
+            <div class="bg-[var(--accent)] text-white p-4 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold">
+                        BR
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xs leading-tight">Brayan Reveth</h4>
+                        <span class="text-[10px] text-white/80 flex items-center">
+                            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-1.5 animate-pulse"></span> GHTY STUDIO (En línea)
+                        </span>
+                    </div>
+                </div>
+                <button onclick="toggleChatWindow()" class="text-white/80 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+            <!-- CUERPO DE BIENVENIDA Y ACCESO A CHAT DIRECTO -->
+            <div class="p-4 bg-[var(--bg-body)] space-y-3">
+                <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-3 rounded-2xl rounded-tl-none text-xs text-[var(--text-main)] shadow-sm leading-relaxed">
+                    ¡Hola! 👋 Soy <strong>Brayan Reveth</strong>, fundador de GHTY STUDIO. ¿Listo para escalar tus ventas o tienes alguna duda sobre nuestros sistemas high-ticket?
+                </div>
+
+                <a href="https://wa.me/584241458724?text=%C2%A1Hola%20Brayan!%20Vengo%20de%20tu%20web%20y%20quiero%20conversar%20sobre%20tus%20sistemas%20de%20ventas." target="_blank" class="w-full py-3 rounded-xl btn-primary text-xs font-bold uppercase tracking-wider flex items-center justify-center shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-base mr-2"></i> Iniciar Chat en WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT DE NAVEGACIÓN Y RENDIMIENTO -->
     <script>
-        /* NÚMERO PERSONAL DE WHATSAPP */
         const PHONE = "584241458724";
 
-        /* SISTEMA DE MODO OSCURO / CLARO */
+        /* MODO OSCURO / CLARO */
         function toggleDarkMode() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-toggle-icon');
             const mobIcon = document.getElementById('mob-theme-toggle-icon');
-            
+
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
                 if (icon) icon.className = "fa-solid fa-moon text-sm";
@@ -607,7 +807,6 @@
             }
         }
 
-        /* AUTO DETECCIÓN DE PREFERENCIA DE TEMA DEL SISTEMA */
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
             const icon = document.getElementById('theme-toggle-icon');
@@ -616,30 +815,32 @@
             if (mobIcon) mobIcon.className = "fa-solid fa-sun text-xs";
         }
 
-        /* SISTEMA DE PESTAÑAS (SPA ROUTER) */
+        /* NAVEGACIÓN SPA */
         function switchTab(tabKey) {
-            const tabs = ['systems', 'traffic', 'calc', 'faq'];
+            const tabs = ['systems', 'traffic', 'calc', 'audit', 'proof', 'faq'];
 
             tabs.forEach(key => {
                 const view = document.getElementById(`view-${key}`);
                 const btn = document.getElementById(`tab-btn-${key}`);
                 const mobBtn = document.getElementById(`mob-btn-${key}`);
 
-                if (key === tabKey) {
-                    view.classList.remove('hidden');
-                    if (btn) btn.className = "text-[var(--accent)] font-semibold transition-colors py-1";
-                    if (mobBtn) mobBtn.className = "w-full text-left px-3 py-2.5 rounded-lg text-[var(--accent)] font-semibold bg-[var(--accent-soft)]";
-                } else {
-                    view.classList.add('hidden');
-                    if (btn) btn.className = "text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-1";
-                    if (mobBtn) mobBtn.className = "w-full text-left px-3 py-2.5 rounded-lg text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]";
+                if (view) {
+                    if (key === tabKey) {
+                        view.classList.remove('hidden');
+                        if (btn) btn.className = "text-[var(--accent)] font-semibold transition-colors py-1";
+                        if (mobBtn) mobBtn.className = "w-full text-left px-3 py-2.5 rounded-lg text-[var(--accent)] font-semibold bg-[var(--accent-soft)]";
+                    } else {
+                        view.classList.add('hidden');
+                        if (btn) btn.className = "text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors py-1";
+                        if (mobBtn) mobBtn.className = "w-full text-left px-3 py-2.5 rounded-lg text-[var(--text-muted)] hover:bg-[var(--bg-subtle)]";
+                    }
                 }
             });
 
             closeMobileMenu();
         }
 
-        /* MENÚ HAMBURGUESA */
+        /* MENÚ MÓVIL */
         const toggleBtn = document.getElementById('hamburger-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -653,7 +854,7 @@
             toggleBtn.classList.remove('is-open');
         }
 
-        /* PREGUNTAS FRECUENTES (FAQ) ACCORDION */
+        /* FAQ ACCORDION */
         function toggleFaq(id) {
             const text = document.getElementById(`faq-text-${id}`);
             const icon = document.getElementById(`faq-icon-${id}`);
@@ -667,7 +868,7 @@
             }
         }
 
-        /* CALCULADORA DE INVERSIÓN EN TIEMPO REAL */
+        /* CALCULADORA DE ROI */
         function calculateTotal() {
             const select = document.getElementById('calc-service');
             let total = parseFloat(select.value);
@@ -701,13 +902,21 @@
             window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        /* SELECCIÓN AUTOMÁTICA DE PLAN */
+        /* AUDITORÍA DE FUGA DE DINERO */
+        function calculateAudit() {
+            const leads = parseFloat(document.getElementById('audit-leads').value) || 0;
+            const ticket = parseFloat(document.getElementById('audit-ticket').value) || 0;
+            const lostSales = leads * 0.15;
+            const totalLoss = lostSales * ticket;
+
+            document.getElementById('audit-loss').innerText = `$${Math.round(totalLoss).toLocaleString('en-US')} USD`;
+        }
+
         function selectPlan(planName) {
             document.getElementById('form-service').value = planName;
             document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
         }
 
-        /* ENVÍO DEL FORMULARIO DE ASESORÍA */
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -728,7 +937,12 @@
 
             window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
         });
+
+        /* CONTROL DE APERTURA DEL WIDGET (GPU ACCELERATED - 0 LAG) */
+        function toggleChatWindow() {
+            const win = document.getElementById('chat-widget-window');
+            win.classList.toggle('is-active');
+        }
     </script>
 </body>
 </html>
-```
